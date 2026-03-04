@@ -5,9 +5,6 @@ template:
   theme: tango
   theme-dark: nord
 
-  bslib:
-    brand: _brand.yml
-
 navbar:
   structure:
     left: [home, vignettes, functions, news, links]
