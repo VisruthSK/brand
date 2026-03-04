@@ -1,0 +1,32 @@
+template:
+  bootstrap: 5
+  light-switch: true
+
+  theme: tango
+  theme-dark: nord
+
+  bslib:
+    brand: _brand.yml
+
+navbar:
+  structure:
+    left: [home, vignettes, functions, news, links]
+    right: [search, bluesky, github, lightswitch]
+  components:
+    home:
+      icon: fa-home fa-lg
+      aria-label: Go to homepage
+      href: index.html
+    vignettes:
+      text: Vignettes
+      href: articles/index.html
+    functions:
+      text: Functions
+      href: reference/index.html
+    links:
+      text: Links
+      href: https://links.visruth.com/
+    bluesky:
+      icon: fa-brands fa-bluesky
+      aria-label: Visit our Bluesky profile
+      href: https://bsky.app/profile/visruth.com

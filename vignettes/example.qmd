@@ -1,0 +1,103 @@
+---
+title: "Example Vignette"
+vignette: >
+  %\VignetteIndexEntry{example}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+## Typography
+
+## H2
+
+Header 2
+
+### H3
+
+Header 3
+
+#### H4
+
+Header 4
+
+Paragraph text should use the brand base font. Inline code should use the brand monospace: `const x = 42`.
+
+```text
+text block should use the brand monospace.
+abcdefghijklmnopqrstuvwxyz 0123456789
+```
+
+```{r}
+brand::hello("brand")
+```
+
+## Theme colors (semantic)
+
+The values below are pulled from `_brand.yml` using the `brand` shortcode.
+
+| Token | Light | Dark |
+|---|---|---|
+| background | `{{< brand color background light >}}` | `{{< brand color background dark >}}` |
+| foreground | `{{< brand color foreground light >}}` | `{{< brand color foreground dark >}}` |
+| primary | `{{< brand color primary light >}}` | `{{< brand color primary dark >}}` |
+| secondary | `{{< brand color secondary light >}}` | `{{< brand color secondary dark >}}` |
+| tertiary | `{{< brand color tertiary light >}}` | `{{< brand color tertiary dark >}}` |
+| success | `{{< brand color success light >}}` | `{{< brand color success dark >}}` |
+| info | `{{< brand color info light >}}` | `{{< brand color info dark >}}` |
+| warning | `{{< brand color warning light >}}` | `{{< brand color warning dark >}}` |
+| danger | `{{< brand color danger light >}}` | `{{< brand color danger dark >}}` |
+
+## Palette (named swatches)
+
+These are the single-value entries under `color.palette`.
+
+| Name | Value |
+|---|---|
+| ivory | `{{< brand color ivory >}}` |
+| ink | `{{< brand color ink >}}` |
+| blackish | `{{< brand color blackish >}}` |
+| cobalt | `{{< brand color cobalt >}}` |
+| periwinkle | `{{< brand color periwinkle >}}` |
+| slate | `{{< brand color slate >}}` |
+| mist | `{{< brand color mist >}}` |
+| haze | `{{< brand color haze >}}` |
+| shadow | `{{< brand color shadow >}}` |
+| teal | `{{< brand color teal >}}` |
+| amber | `{{< brand color amber >}}` |
+| rose | `{{< brand color rose >}}` |
+
+## Components
+
+::: {.callout-note}
+Info callout.
+:::
+
+::: {.callout-warning}
+Warning callout.
+:::
+
+::: {.callout-important}
+Danger callout. 
+:::
+
+::: {.callout-tip}
+Tip callout.
+:::
+
+::: {.callout-caution}
+Caution callout.
+:::
+
+> Blockquote example. This should remain readable in both light and dark modes.
+
+### Table
+
+| Item | Example |
+|---|---|
+| Link | <https://www.visruth.com> |
+| Inline code | `printf("hello")` |
+| List | - one<br>- two<br>- three |

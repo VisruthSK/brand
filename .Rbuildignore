@@ -1,0 +1,9 @@
+^brand\.Rproj$
+^\.Rproj\.user$
+^vignettes/\.quarto$
+^vignettes/*_files$
+^LICENSE\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

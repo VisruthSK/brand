@@ -1,0 +1,84 @@
+meta:
+  name:
+    short: Visruth
+    full: Visruth Srimath Kandali
+  link:
+    home: https://www.visruth.com
+    github: https://github.com/VisruthSK
+    bluesky: https://bsky.app/profile/visruth.com
+    linkedin: https://www.linkedin.com/in/visruthsk
+
+color:
+  palette:
+    ivory: "#F6F1E6"
+    ivory-2: "#FFFCF6"
+    ink: "#14162B"
+    slate: "#5D667E"
+    mist: "#D9DEEA"
+    haze: "#B7BED3"
+    shadow: "#2C3147"
+    blackish: "#0A0A0A"
+
+    cobalt: "#2C3FD6"
+    periwinkle: "#93A4FF"
+    teal: "#1F8A7A"
+    teal-light: "#37C2AC"
+    amber: "#C07A12"
+    amber-light: "#FFB35C"
+    rose: "#C6485D"
+    rose-light: "#FF7D95"
+
+    code-bg-light: "#EEF4F8"
+    code-bg-dark: "#1b1e27"
+
+  background:
+    light: ivory-2
+    dark: blackish
+  foreground:
+    light: ink
+    dark: ivory
+
+  primary:
+    light: cobalt
+    dark: periwinkle
+
+  secondary:
+    light: slate
+    dark: haze
+  tertiary:
+    light: mist
+    dark: shadow
+
+  success:
+    light: teal
+    dark: teal-light
+  info:
+    light: cobalt
+    dark: periwinkle
+  warning:
+    light: amber
+    dark: amber-light
+  danger:
+    light: rose
+    dark: rose-light
+
+typography:
+  fonts:
+    - family: Domine
+      source: google
+    - family: DM Serif Display
+      source: google
+    - family: IBM Plex Mono
+      source: google
+  base: Domine
+  headings: DM Serif Display
+  monospace: IBM Plex Mono
+
+  monospace-inline:
+    background-color:
+      light: code-bg-light
+      dark: code-bg-dark
+  monospace-block:
+    background-color:
+      light: code-bg-light
+      dark: code-bg-dark

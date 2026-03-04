@@ -1,0 +1,7 @@
+url: https://visruthsk.github.io/brand/
+
+template:
+  package: brand
+
+development:
+  mode: auto

@@ -1,0 +1,17 @@
+Package: brand
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+License: GPL (>= 3)
+URL: https://visruthsk.github.io/brand/
+Suggests: 
+    knitr,
+    quarto
+VignetteBuilder: 
+    quarto
+Config/Needs/website: VisruthSK/brand
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
