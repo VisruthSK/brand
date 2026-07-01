@@ -1,8 +1,12 @@
 template:
   bootstrap: 5
   light-switch: true
+
+  theme: tango
+  theme-dark: nord
+
   bslib:
-    brand: !expr brand::brand_yml()
+    brand: !expr system.file("pkgdown/_brand.yml", package = "brand", mustWork = TRUE)
 
 navbar:
   structure:
