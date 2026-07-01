@@ -31,20 +31,16 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Build theme
+        run: source("scripts/build-theme.R")
+        shell: Rscript {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
             any::pkgdown
             local::.
           needs: website
-
-      - name: Build theme
-        run: source("scripts/build-theme.R")
-        shell: Rscript {0}
-
-      - name: Re-install package with generated theme assets
-        run: remotes::install_local(".", force = TRUE, upgrade = "never")
-        shell: Rscript {0}
 
       - name: Build site
         run: |

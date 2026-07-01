@@ -5,8 +5,11 @@
 #' @param dest Path to copy the file to. Defaults to `"_brand.yml"`.
 #' @export
 use_brand <- function(dest = "_brand.yml") {
-  fs::dir_create(fs::path_dir(dest))
-  fs::path_package("brand", "pkgdown", "_brand.yml") |>
-    fs::file_copy(dest, overwrite = TRUE)
+  src <- system.file("pkgdown/_brand.yml", package = "brand", mustWork = TRUE)
+  dir <- dirname(dest)
+  if (!dir.exists(dir)) {
+    dir.create(dir, recursive = TRUE)
+  }
+  file.copy(src, dest, overwrite = TRUE)
   invisible(NULL)
 }
