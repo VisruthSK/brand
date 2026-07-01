@@ -2,3 +2,5 @@
 inst/doc
 **/.quarto/
 docs
+inst/pkgdown/extra.scss
+
