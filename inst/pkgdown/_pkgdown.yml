@@ -6,7 +6,7 @@ template:
   theme-dark: nord
 
   bslib:
-    brand: !expr system.file("pkgdown/_brand.yml", package = "brand", mustWork = TRUE)
+    brand: !expr brand:::brand_yml()
 
 navbar:
   structure:

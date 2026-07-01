@@ -41,14 +41,14 @@ The values below are pulled from `_brand.yml` using the `brand` shortcode.
 
 | Token | Light | Dark |
 |---|---|---|
-| background | `{{< brand color background >}}` | `{{< brand dark-mode-color background >}}` |
-| foreground | `{{< brand color foreground >}}` | `{{< brand dark-mode-color foreground >}}` |
-| primary | `{{< brand color primary >}}` | `{{< brand dark-mode-color primary >}}` |
-| secondary | `{{< brand color secondary >}}` | `{{< brand dark-mode-color secondary >}}` |
-| success | `{{< brand color success >}}` | `{{< brand dark-mode-color success >}}` |
-| info | `{{< brand color info >}}` | `{{< brand dark-mode-color info >}}` |
-| warning | `{{< brand color warning >}}` | `{{< brand dark-mode-color warning >}}` |
-| danger | `{{< brand color danger >}}` | `{{< brand dark-mode-color danger >}}` |
+| background | `{{< brand color background light >}}` | `{{< brand color background dark >}}` |
+| foreground | `{{< brand color foreground light >}}` | `{{< brand color foreground dark >}}` |
+| primary | `{{< brand color primary light >}}` | `{{< brand color primary dark >}}` |
+| secondary | `{{< brand color secondary light >}}` | `{{< brand color secondary dark >}}` |
+| success | `{{< brand color success light >}}` | `{{< brand color success dark >}}` |
+| info | `{{< brand color info light >}}` | `{{< brand color info dark >}}` |
+| warning | `{{< brand color warning light >}}` | `{{< brand color warning dark >}}` |
+| danger | `{{< brand color danger light >}}` | `{{< brand color danger dark >}}` |
 
 ## Palette (named swatches)
 

@@ -31,14 +31,36 @@ color:
     code-bg-light: "#EEF4F8"
     code-bg-dark: "#1b1e27"
 
-  background: ivory-2
-  foreground: ink
-  primary: cobalt
-  secondary: slate
-  success: teal
-  info: cobalt
-  warning: amber
-  danger: rose
+  background:
+    light: ivory-2
+    dark: blackish
+  foreground:
+    light: ink
+    dark: ivory
+
+  primary:
+    light: cobalt
+    dark: periwinkle
+
+  secondary:
+    light: slate
+    dark: haze
+  tertiary:
+    light: mist
+    dark: shadow
+
+  success:
+    light: teal
+    dark: teal-light
+  info:
+    light: cobalt
+    dark: periwinkle
+  warning:
+    light: amber
+    dark: amber-light
+  danger:
+    light: rose
+    dark: rose-light
 
 typography:
   fonts:
@@ -53,23 +75,10 @@ typography:
   monospace: IBM Plex Mono
 
   monospace-inline:
-    background-color: code-bg-light
+    background-color:
+      light: code-bg-light
+      dark: code-bg-dark
   monospace-block:
-    background-color: code-bg-light
-
-dark-mode-color:
-  background: blackish
-  foreground: ivory
-  primary: periwinkle
-  secondary: haze
-  tertiary: shadow
-  success: teal-light
-  info: periwinkle
-  warning: amber-light
-  danger: rose-light
-
-dark-mode-typography:
-  monospace-inline:
-    background-color: code-bg-dark
-  monospace-block:
-    background-color: code-bg-dark
+    background-color:
+      light: code-bg-light
+      dark: code-bg-dark

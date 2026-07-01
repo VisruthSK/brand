@@ -24,16 +24,16 @@ get_val <- function(path) {
   if (val %in% names(pal)) pal[[val]] else val
 }
 
-bg <- get_val(c("dark-mode-color", "background"))
-fg <- get_val(c("dark-mode-color", "foreground"))
-primary <- get_val(c("dark-mode-color", "primary"))
-secondary <- get_val(c("dark-mode-color", "secondary"))
-tertiary <- get_val(c("dark-mode-color", "tertiary"))
-success <- get_val(c("dark-mode-color", "success"))
-info <- get_val(c("dark-mode-color", "info"))
-warning <- get_val(c("dark-mode-color", "warning"))
-danger <- get_val(c("dark-mode-color", "danger"))
-code_bg <- get_val(c("dark-mode-typography", "monospace-inline", "background-color"))
+bg <- get_val(c("color", "background", "dark"))
+fg <- get_val(c("color", "foreground", "dark"))
+primary <- get_val(c("color", "primary", "dark"))
+secondary <- get_val(c("color", "secondary", "dark"))
+tertiary <- get_val(c("color", "tertiary", "dark"))
+success <- get_val(c("color", "success", "dark"))
+info <- get_val(c("color", "info", "dark"))
+warning <- get_val(c("color", "warning", "dark"))
+danger <- get_val(c("color", "danger", "dark"))
+code_bg <- get_val(c("typography", "monospace-inline", "background-color", "dark"))
 
 writeLines(
   paste0(
