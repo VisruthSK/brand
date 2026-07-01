@@ -32,19 +32,24 @@ abcdefghijklmnopqrstuvwxyz 0123456789
 ```
 
 ```{r}
-brand::use_brand
+brand::brand_yml()
 ```
 
-| Token | Value |
-|---|---|
-| background | `{{< brand color background >}}` |
-| foreground | `{{< brand color foreground >}}` |
-| primary | `{{< brand color primary >}}` |
-| secondary | `{{< brand color secondary >}}` |
-| success | `{{< brand color success >}}` |
-| info | `{{< brand color info >}}` |
-| warning | `{{< brand color warning >}}` |
-| danger | `{{< brand color danger >}}` |
+## Theme colors (semantic)
+
+The values below are pulled from `_brand.yml` using the `brand` shortcode.
+
+| Token | Light | Dark |
+|---|---|---|
+| background | `{{< brand color background light >}}` | `{{< brand color background dark >}}` |
+| foreground | `{{< brand color foreground light >}}` | `{{< brand color foreground dark >}}` |
+| primary | `{{< brand color primary light >}}` | `{{< brand color primary dark >}}` |
+| secondary | `{{< brand color secondary light >}}` | `{{< brand color secondary dark >}}` |
+| tertiary | `{{< brand color tertiary light >}}` | `{{< brand color tertiary dark >}}` |
+| success | `{{< brand color success light >}}` | `{{< brand color success dark >}}` |
+| info | `{{< brand color info light >}}` | `{{< brand color info dark >}}` |
+| warning | `{{< brand color warning light >}}` | `{{< brand color warning dark >}}` |
+| danger | `{{< brand color danger light >}}` | `{{< brand color danger dark >}}` |
 
 ## Palette (named swatches)
 
