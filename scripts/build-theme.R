@@ -62,3 +62,4 @@ writeLines(
   ),
   "inst/pkgdown/extra.scss"
 )
+

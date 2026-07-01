@@ -10,6 +10,22 @@ knitr:
     comment: '#>'
 ---
 
+```{r setup, include=FALSE}
+yml <- yaml::read_yaml(system.file("pkgdown/_brand.yml", package = "brand", mustWork = TRUE))
+pal <- yml$color$palette
+
+c_val <- function(name, mode) {
+  val <- yml$color[[name]][[mode]]
+  hex <- if (val %in% names(pal)) pal[[val]] else val
+  paste0('<span style="display:inline-block;width:12px;height:12px;background-color:', hex, ';margin-right:5px;border:1px solid #ccc;vertical-align:middle;"></span>`', hex, '`')
+}
+
+p_val <- function(name) {
+  hex <- pal[[name]]
+  paste0('<span style="display:inline-block;width:12px;height:12px;background-color:', hex, ';margin-right:5px;border:1px solid #ccc;vertical-align:middle;"></span>`', hex, '`')
+}
+```
+
 ## Typography
 
 ## H2
@@ -41,14 +57,14 @@ The values below are pulled from `_brand.yml` using the `brand` shortcode.
 
 | Token | Light | Dark |
 |---|---|---|
-| background | `{{< brand color background light >}}` | `{{< brand color background dark >}}` |
-| foreground | `{{< brand color foreground light >}}` | `{{< brand color foreground dark >}}` |
-| primary | `{{< brand color primary light >}}` | `{{< brand color primary dark >}}` |
-| secondary | `{{< brand color secondary light >}}` | `{{< brand color secondary dark >}}` |
-| success | `{{< brand color success light >}}` | `{{< brand color success dark >}}` |
-| info | `{{< brand color info light >}}` | `{{< brand color info dark >}}` |
-| warning | `{{< brand color warning light >}}` | `{{< brand color warning dark >}}` |
-| danger | `{{< brand color danger light >}}` | `{{< brand color danger dark >}}` |
+| background | `r c_val("background", "light")` | `r c_val("background", "dark")` |
+| foreground | `r c_val("foreground", "light")` | `r c_val("foreground", "dark")` |
+| primary | `r c_val("primary", "light")` | `r c_val("primary", "dark")` |
+| secondary | `r c_val("secondary", "light")` | `r c_val("secondary", "dark")` |
+| success | `r c_val("success", "light")` | `r c_val("success", "dark")` |
+| info | `r c_val("info", "light")` | `r c_val("info", "dark")` |
+| warning | `r c_val("warning", "light")` | `r c_val("warning", "dark")` |
+| danger | `r c_val("danger", "light")` | `r c_val("danger", "dark")` |
 
 ## Palette (named swatches)
 
@@ -56,18 +72,18 @@ These are the single-value entries under `color.palette`.
 
 | Name | Value |
 |---|---|
-| ivory | `{{< brand color ivory >}}` |
-| ink | `{{< brand color ink >}}` |
-| blackish | `{{< brand color blackish >}}` |
-| cobalt | `{{< brand color cobalt >}}` |
-| periwinkle | `{{< brand color periwinkle >}}` |
-| slate | `{{< brand color slate >}}` |
-| mist | `{{< brand color mist >}}` |
-| haze | `{{< brand color haze >}}` |
-| shadow | `{{< brand color shadow >}}` |
-| teal | `{{< brand color teal >}}` |
-| amber | `{{< brand color amber >}}` |
-| rose | `{{< brand color rose >}}` |
+| ivory | `r p_val("ivory")` |
+| ink | `r p_val("ink")` |
+| blackish | `r p_val("blackish")` |
+| cobalt | `r p_val("cobalt")` |
+| periwinkle | `r p_val("periwinkle")` |
+| slate | `r p_val("slate")` |
+| mist | `r p_val("mist")` |
+| haze | `r p_val("haze")` |
+| shadow | `r p_val("shadow")` |
+| teal | `r p_val("teal")` |
+| amber | `r p_val("amber")` |
+| rose | `r p_val("rose")` |
 
 ## Components
 

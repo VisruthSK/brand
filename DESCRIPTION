@@ -6,6 +6,8 @@ Authors@R:
 Description: What the package does (one paragraph).
 License: GPL (>= 3)
 URL: https://visruthsk.github.io/brand/
+Imports: 
+    yaml
 Suggests: 
     brand.yml,
     knitr,
@@ -15,6 +17,6 @@ VignetteBuilder:
 Config/Needs/website:
     brand.yml,
     VisruthSK/brand
+Config/roxygen2/version: 8.0.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.0.0
