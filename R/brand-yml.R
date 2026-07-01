@@ -29,11 +29,26 @@ brand_yml <- function() {
 
   # Preprocess mode-specific list values to satisfy brand.yml package validation
   if (is.list(yml$color)) {
-    theme_fields <- c("foreground", "background", "primary", "secondary", "tertiary",
-                      "success", "info", "warning", "danger", "light", "dark")
+    theme_fields <- c(
+      "foreground",
+      "background",
+      "primary",
+      "secondary",
+      "tertiary",
+      "success",
+      "info",
+      "warning",
+      "danger",
+      "light",
+      "dark"
+    )
     for (field in theme_fields) {
       if (is.list(yml$color[[field]])) {
-        val <- if (!is.null(yml$color[[field]]$light)) yml$color[[field]]$light else yml$color[[field]][[1]]
+        val <- if (!is.null(yml$color[[field]]$light)) {
+          yml$color[[field]]$light
+        } else {
+          yml$color[[field]][[1]]
+        }
         yml$color[[field]] <- val
       }
     }
@@ -44,7 +59,11 @@ brand_yml <- function() {
       if (is.list(yml$typography[[el]])) {
         for (prop in names(yml$typography[[el]])) {
           if (is.list(yml$typography[[el]][[prop]])) {
-            val <- if (!is.null(yml$typography[[el]][[prop]]$light)) yml$typography[[el]][[prop]]$light else yml$typography[[el]][[prop]][[1]]
+            val <- if (!is.null(yml$typography[[el]][[prop]]$light)) {
+              yml$typography[[el]][[prop]]$light
+            } else {
+              yml$typography[[el]][[prop]][[1]]
+            }
             yml$typography[[el]][[prop]] <- val
           }
         }
