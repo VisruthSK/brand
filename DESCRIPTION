@@ -13,6 +13,7 @@ BugReports: https://github.com/VisruthSK/brand/issues
 Depends:
     R (>= 4.1.0)
 Imports:
+    brand.yml,
     yaml
 Suggests:
     knitr,
