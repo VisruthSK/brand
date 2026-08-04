@@ -5,22 +5,16 @@ template:
   theme: tango
   theme-dark: nord
 
-  bslib:
-    brand: !expr brand:::brand_yml()
-
 navbar:
   structure:
-    left: [home, vignettes, functions, news, links]
+    left: [home, articles, reference, news, links]
     right: [search, bluesky, github, lightswitch]
   components:
     home:
       icon: fa-home fa-lg
       aria-label: Go to homepage
       href: index.html
-    vignettes:
-      text: Vignettes
-      href: articles/index.html
-    functions:
+    reference:
       text: Functions
       href: reference/index.html
     links:

@@ -1,0 +1,27 @@
+$brand-dark-theme-colors: () !default;
+$brand-dark-code-bg: $code-bg !default;
+$brand-dark-pre-color: $pre-color !default;
+$brand-dark-pre-bg: $pre-bg !default;
+
+:root pre {
+  background-color: $pre-bg;
+}
+
+:root[data-bs-theme="dark"] {
+  @each $name, $color in $brand-dark-theme-colors {
+    --#{$prefix}#{$name}: #{$color};
+    --#{$prefix}#{$name}-rgb: #{to-rgb($color)};
+    --#{$prefix}#{$name}-text-emphasis: #{$color};
+    --#{$prefix}#{$name}-bg-subtle: #{shade-color($color, 80%)};
+    --#{$prefix}#{$name}-border-subtle: #{shade-color($color, 40%)};
+  }
+
+  code {
+    background-color: $brand-dark-code-bg;
+  }
+
+  pre {
+    color: $brand-dark-pre-color;
+    background-color: $brand-dark-pre-bg;
+  }
+}

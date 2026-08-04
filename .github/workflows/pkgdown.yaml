@@ -31,10 +31,6 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Build theme
-        run: source("scripts/build-theme.R")
-        shell: Rscript {0}
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
@@ -44,8 +40,11 @@ jobs:
 
       - name: Build site
         run: |
-          options(yaml.eval.expr = TRUE)
-          pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+          pkgdown::build_site_github_pages(
+            override = brand::pkgdown_override(),
+            new_process = FALSE,
+            install = FALSE
+          )
         shell: Rscript {0}
 
       - name: Deploy to GitHub pages 🚀

@@ -11,18 +11,24 @@ knitr:
 ---
 
 ```{r setup, include=FALSE}
-yml <- yaml::read_yaml(system.file("pkgdown/_brand.yml", package = "brand", mustWork = TRUE))
-pal <- yml$color$palette
+brand <- yaml::read_yaml(brand::brand_file())
+palette <- brand$color$palette
 
-c_val <- function(name, mode) {
-  val <- yml$color[[name]][[mode]]
-  hex <- if (val %in% names(pal)) pal[[val]] else val
-  paste0('<span style="display:inline-block;width:12px;height:12px;background-color:', hex, ';margin-right:5px;border:1px solid #ccc;vertical-align:middle;"></span>`', hex, '`')
+swatch <- function(value) {
+  hex <- if (value %in% names(palette)) palette[[value]] else value
+  paste0(
+    '<span style="display:inline-block;width:12px;height:12px;',
+    "background-color:",
+    hex,
+    ";margin-right:5px;",
+    'border:1px solid #ccc;vertical-align:middle;"></span>`',
+    hex,
+    "`"
+  )
 }
 
-p_val <- function(name) {
-  hex <- pal[[name]]
-  paste0('<span style="display:inline-block;width:12px;height:12px;background-color:', hex, ';margin-right:5px;border:1px solid #ccc;vertical-align:middle;"></span>`', hex, '`')
+for_mode <- function(value, mode) {
+  if (is.list(value)) value[[mode]] else value
 }
 ```
 
@@ -53,37 +59,37 @@ brand::use_brand
 
 ## Theme colors (semantic)
 
-The values below are pulled from `_brand.yml` using the `brand` shortcode.
+Read straight out of `_brand.yml`, the same file that styles this site.
 
-| Token | Light | Dark |
-|---|---|---|
-| background | `r c_val("background", "light")` | `r c_val("background", "dark")` |
-| foreground | `r c_val("foreground", "light")` | `r c_val("foreground", "dark")` |
-| primary | `r c_val("primary", "light")` | `r c_val("primary", "dark")` |
-| secondary | `r c_val("secondary", "light")` | `r c_val("secondary", "dark")` |
-| success | `r c_val("success", "light")` | `r c_val("success", "dark")` |
-| info | `r c_val("info", "light")` | `r c_val("info", "dark")` |
-| warning | `r c_val("warning", "light")` | `r c_val("warning", "dark")` |
-| danger | `r c_val("danger", "light")` | `r c_val("danger", "dark")` |
+```{r}
+#| echo: false
+tokens <- setdiff(names(brand$color), "palette")
+knitr::kable(
+  data.frame(
+    Token = tokens,
+    Light = vapply(tokens, function(t) swatch(for_mode(brand$color[[t]], "light")), ""),
+    Dark = vapply(tokens, function(t) swatch(for_mode(brand$color[[t]], "dark")), "")
+  ),
+  row.names = FALSE,
+  escape = FALSE
+)
+```
 
 ## Palette (named swatches)
 
 These are the single-value entries under `color.palette`.
 
-| Name | Value |
-|---|---|
-| ivory | `r p_val("ivory")` |
-| ink | `r p_val("ink")` |
-| blackish | `r p_val("blackish")` |
-| cobalt | `r p_val("cobalt")` |
-| periwinkle | `r p_val("periwinkle")` |
-| slate | `r p_val("slate")` |
-| mist | `r p_val("mist")` |
-| haze | `r p_val("haze")` |
-| shadow | `r p_val("shadow")` |
-| teal | `r p_val("teal")` |
-| amber | `r p_val("amber")` |
-| rose | `r p_val("rose")` |
+```{r}
+#| echo: false
+knitr::kable(
+  data.frame(
+    Name = names(palette),
+    Value = vapply(names(palette), swatch, "")
+  ),
+  row.names = FALSE,
+  escape = FALSE
+)
+```
 
 ## Components
 
@@ -96,7 +102,7 @@ Warning callout.
 :::
 
 ::: {.callout-important}
-Danger callout. 
+Danger callout.
 :::
 
 ::: {.callout-tip}
