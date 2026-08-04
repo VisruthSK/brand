@@ -8,7 +8,7 @@ brand_bslib(path = brand_file())
 }
 \arguments{
 \item{path}{A \verb{_brand.yml}. Values under \code{color} and \code{typography} may be
-\code{light}/\code{dark} maps, exactly as Quarto allows.}
+\code{light}/\code{dark} maps.}
 }
 \value{
 A named list of \code{bslib::bs_theme()} arguments.
@@ -18,4 +18,8 @@ The \code{template.bslib} list that pkgdown splices into \code{bslib::bs_theme()
 light mode goes to bslib as a brand, which maps it onto Bootstrap for us; the
 dark mode becomes the matching Bootstrap \verb{*-dark} Sass variables, plus the
 values \code{extra.scss} needs for the tokens Bootstrap keeps mode-invariant.
+}
+\details{
+Quarto reads \code{color.link} where Bootstrap spells the same thing
+\code{typography.link.color}; either form works here.
 }

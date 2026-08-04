@@ -53,85 +53,111 @@ pkgdown_override <- function(..., path = brand_file()) {
 #' dark mode becomes the matching Bootstrap `*-dark` Sass variables, plus the
 #' values `extra.scss` needs for the tokens Bootstrap keeps mode-invariant.
 #'
+#' Quarto reads `color.link` where Bootstrap spells the same thing
+#' `typography.link.color`; either form works here.
+#'
 #' @param path A `_brand.yml`. Values under `color` and `typography` may be
-#'   `light`/`dark` maps, exactly as Quarto allows.
+#'   `light`/`dark` maps.
 #'
 #' @return A named list of `bslib::bs_theme()` arguments.
 #' @export
 brand_bslib <- function(path = brand_file()) {
   brand <- yaml::read_yaml(path)
+
+  if (is.null(brand$typography$link$color)) {
+    brand$typography$link$color <- brand$color$link
+  }
+  brand$color$link <- NULL
+
   c(
-    list(brand = brand_mode(brand, "light")),
-    dark_variables(brand_mode(brand, "dark"))
+    list(brand = brand_mode(brand, "light", path)),
+    dark_variables(brand_mode(brand, "dark", path))
   )
 }
 
-brand_mode <- function(brand, mode) {
-  brand$color <- select_mode(brand$color, mode)
-  brand$typography <- select_mode(brand$typography, mode)
+brand_mode <- function(brand, mode, path) {
+  brand$color <- select_mode(brand$color, "palette", mode)
+  brand$typography <- select_mode(brand$typography, "fonts", mode)
+  brand <- brand.yml::as_brand_yml(brand)
+  brand$path <- path
   brand
 }
 
-select_mode <- function(x, mode) {
+select_mode <- function(x, keep, mode) {
   if (!is.list(x)) {
     return(x)
   }
-  if (length(names(x)) && all(names(x) %in% c("light", "dark"))) {
-    return(x[[mode]])
-  }
-  lapply(x, select_mode, mode)
+  selected <- setdiff(names(x), keep)
+  x[selected] <- lapply(x[selected], select_value, mode)
+  drop_null(x)
 }
 
-theme_colors <- c(
-  "primary",
-  "secondary",
-  "success",
-  "info",
-  "warning",
-  "danger",
-  "light",
-  "dark"
-)
+select_value <- function(value, mode) {
+  modes <- names(value)
+  if (is.list(value) && length(modes) && all(modes %in% c("light", "dark"))) {
+    value <- if (mode %in% modes) value[[mode]]
+  }
+  select_mode(value, character(), mode)
+}
 
 dark_variables <- function(brand) {
-  color <- brand$color
-  typography <- brand$typography
-  hex <- function(value) palette_hex(value, color$palette)
+  values <- c(
+    brand.yml::brand_sass_color(brand)$defaults,
+    brand.yml::brand_sass_typography(brand)$defaults
+  ) |>
+    lapply(sub, pattern = " !default$", replacement = "")
 
-  inline <- typography$`monospace-inline`
-  block <- typography$`monospace-block`
+  colors <- values[paste0(
+    "brand_color_",
+    c(
+      "primary",
+      "secondary",
+      "success",
+      "info",
+      "warning",
+      "danger",
+      "light",
+      "dark"
+    )
+  )] |>
+    drop_null()
 
-  link_color <- typography$link$color
-  if (is.null(link_color)) {
-    link_color <- color$primary
-  }
-
-  drop_null(list(
-    "body-bg-dark" = hex(color$background),
-    "body-color-dark" = hex(color$foreground),
-    "body-secondary-color-dark" = hex(color$secondary),
-    "body-tertiary-color-dark" = hex(color$tertiary),
-    "code-color-dark" = hex(inline$color),
-    "link-color-dark" = hex(link_color),
-    "brand-dark-code-bg" = hex(inline$`background-color`),
-    "brand-dark-pre-color" = hex(block$color),
-    "brand-dark-pre-bg" = hex(block$`background-color`),
-    "brand-dark-theme-colors" = sass_map(
-      lapply(color[intersect(theme_colors, names(color))], hex)
+  drop_null(c(
+    lapply(
+      c(
+        "body-bg-dark" = "brand_color_background",
+        "body-color-dark" = "brand_color_foreground",
+        "body-secondary-color-dark" = "brand_color_secondary",
+        "body-tertiary-color-dark" = "brand_color_tertiary",
+        "headings-color-dark" = "brand_typography_headings_color",
+        "code-color-dark" = "brand_typography_monospace_inline_color",
+        "brand-dark-code-bg" = "brand_typography_monospace_inline_background_color",
+        "brand-dark-pre-color" = "brand_typography_monospace_block_color",
+        "brand-dark-pre-bg" = "brand_typography_monospace_block_background_color",
+        "brand-dark-link-bg" = "brand_typography_link_background_color"
+      ),
+      function(default) values[[default]]
+    ),
+    list(
+      "link-color-dark" = c(
+        values$brand_typography_link_color,
+        values$brand_color_primary
+      )[1],
+      "brand-dark-theme-colors" = if (length(colors)) {
+        paste0(
+          "(",
+          paste0(
+            '"',
+            sub("^brand_color_", "", names(colors)),
+            '": ',
+            unlist(colors),
+            collapse = ", "
+          ),
+          ")"
+        )
+      }
     )
   ))
-}
-
-palette_hex <- function(value, palette) {
-  if (length(value) == 1 && value %in% names(palette)) {
-    palette[[value]]
-  } else {
-    value
-  }
-}
-
-sass_map <- function(x) {
-  paste0("(", paste0('"', names(x), '": ', unlist(x), collapse = ", "), ")")
 }
 
 drop_null <- function(x) {

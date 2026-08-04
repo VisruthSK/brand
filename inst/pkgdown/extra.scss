@@ -2,6 +2,11 @@ $brand-dark-theme-colors: () !default;
 $brand-dark-code-bg: $code-bg !default;
 $brand-dark-pre-color: $pre-color !default;
 $brand-dark-pre-bg: $pre-bg !default;
+$brand-dark-link-bg: null !default;
+
+@if $brand-dark-theme-colors == () {
+  @warn "Unbranded build: pass override = brand::pkgdown_override() to pkgdown.";
+}
 
 :root pre {
   background-color: $pre-bg;
@@ -14,6 +19,10 @@ $brand-dark-pre-bg: $pre-bg !default;
     --#{$prefix}#{$name}-text-emphasis: #{$color};
     --#{$prefix}#{$name}-bg-subtle: #{shade-color($color, 80%)};
     --#{$prefix}#{$name}-border-subtle: #{shade-color($color, 40%)};
+  }
+
+  @if $brand-dark-link-bg != null {
+    --#{$prefix}link-bg: #{$brand-dark-link-bg};
   }
 
   code {
