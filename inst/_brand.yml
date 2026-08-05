@@ -66,19 +66,52 @@ typography:
   fonts:
     - family: Domine
       source: google
+      weight: [400, 500, 600, 700]
+      style: normal
     - family: DM Serif Display
       source: google
+      weight: 400
+      style: [normal, italic]
     - family: IBM Plex Mono
       source: google
-  base: Domine
-  headings: DM Serif Display
-  monospace: IBM Plex Mono
+      weight: [400, 600]
+      style: [normal, italic]
+
+  base:
+    family: Domine
+    size: 1.125rem
+    line-height: 1.7
+  headings:
+    family: DM Serif Display
+    weight: 400
+    line-height: 1.15
+  monospace:
+    family: IBM Plex Mono
+    size: 0.875em
 
   monospace-inline:
     background-color:
       light: code-bg-light
       dark: code-bg-dark
   monospace-block:
+    line-height: 1.6
     background-color:
       light: code-bg-light
       dark: code-bg-dark
+
+defaults:
+  bootstrap:
+    defaults:
+      enable-rounded: false
+      border-color: $brand-taupe-light
+      border-color-dark: $brand-taupe
+      table-border-color: var(--bs-border-color)
+      input-border-color: var(--bs-border-color)
+      h1-font-size: 2.75rem
+      h2-font-size: 2rem
+      h3-font-size: 1.5rem
+      h4-font-size: 1.25rem
+      h5-font-size: 1.125rem
+      h6-font-size: 1rem
+      headings-margin-bottom: 0.75rem
+      paragraph-margin-bottom: 1.25rem

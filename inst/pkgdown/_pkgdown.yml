@@ -6,13 +6,29 @@ template:
   theme: tango
   theme-dark: nord
 
+  bslib:
+    preset: litera
+    font-family-sans-serif: var(--bs-body-font-family)
+    font-family-serif: var(--bs-body-font-family)
+    navbar-padding-y: 0.75rem
+    pkgdown-nav-height: 73px
+    pkgdown-footer-color: var(--bs-secondary-color)
+    input-color: var(--bs-navbar-color)
+    input-bg: color-mix(in oklab, var(--bs-navbar-color) 12%, transparent)
+    input-placeholder-color: color-mix(in oklab, var(--bs-navbar-color) 70%, transparent)
+    input-border-color: transparent
+
+  includes:
+    after_body: >
+      <script>document.querySelectorAll(".navbar .nav-text.text-danger").forEach(v => v.innerHTML = v.textContent.replace(/(\.\d+)$/, "<span>$1</span>"))</script>
+
 navbar:
   structure:
     left: [home, articles, reference, news, links]
     right: [search, bluesky, github, lightswitch]
   components:
     home:
-      icon: fa-home fa-lg
+      icon: fa-home
       aria-label: Go to homepage
       href: index.html
     reference:
