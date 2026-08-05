@@ -12,10 +12,6 @@ $brand-dark-link-bg: null !default;
   background-color: $pre-bg;
 }
 
-.fa-github {
-  color: $body-color !important;
-}
-
 :root[data-bs-theme="dark"] {
   @each $name, $color in $brand-dark-theme-colors {
     --#{$prefix}#{$name}: #{$color};

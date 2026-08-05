@@ -10,57 +10,57 @@ meta:
 
 color:
   palette:
-    ivory: "#F6F1E6"
-    ivory-2: "#FFFCF6"
-    ink: "#14162B"
-    slate: "#5D667E"
-    mist: "#D9DEEA"
-    haze: "#B7BED3"
-    shadow: "#2C3147"
+    cream: "#F6EFE1"
     blackish: "#0A0A0A"
+    espresso: "#1E1512"
+    shell: "#F2E8DE"
 
-    cobalt: "#2C3FD6"
-    periwinkle: "#93A4FF"
-    teal: "#1F8A7A"
-    teal-light: "#37C2AC"
-    amber: "#C07A12"
-    amber-light: "#FFB35C"
-    rose: "#C6485D"
-    rose-light: "#FF7D95"
+    oxblood: "#380C12"
+    oxblood-light: "#DA5265"
+    taupe: "#6B5B52"
+    taupe-light: "#C9BAAE"
+    blush: "#EAE0D8"
+    sable: "#241813"
+    teal: "#146860"
+    teal-light: "#5FCBB8"
+    ochre: "#A8721C"
+    ochre-light: "#F0BC5C"
+    carmine: "#A8283A"
+    carmine-light: "#F0879A"
 
-    code-bg-light: "#EEF4F8"
-    code-bg-dark: "#1b1e27"
+    code-bg-light: "#F0E6DC"
+    code-bg-dark: "#1D1512"
 
   background:
-    light: ivory-2
+    light: cream
     dark: blackish
   foreground:
-    light: ink
-    dark: ivory
+    light: espresso
+    dark: shell
 
   primary:
-    light: cobalt
-    dark: periwinkle
+    light: oxblood
+    dark: oxblood-light
 
   secondary:
-    light: slate
-    dark: haze
+    light: taupe
+    dark: taupe-light
   tertiary:
-    light: mist
-    dark: shadow
+    light: blush
+    dark: sable
 
   success:
     light: teal
     dark: teal-light
   info:
-    light: cobalt
-    dark: periwinkle
+    light: oxblood
+    dark: oxblood-light
   warning:
-    light: amber
-    dark: amber-light
+    light: ochre
+    dark: ochre-light
   danger:
-    light: rose
-    dark: rose-light
+    light: carmine
+    dark: carmine-light
 
 typography:
   fonts:
