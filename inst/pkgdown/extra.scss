@@ -12,6 +12,11 @@ $brand-dark-link-bg: null !default;
   background-color: $pre-bg;
 }
 
+#dropdown-lightswitch .fa {
+  width: 1.25em;
+  text-align: center;
+}
+
 :root[data-bs-theme="dark"] {
   @each $name, $color in $brand-dark-theme-colors {
     --#{$prefix}#{$name}: #{$color};
