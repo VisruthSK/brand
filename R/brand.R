@@ -43,7 +43,7 @@ use_brand <- function(file = "_brand.yml") {
 #'   `pkgdown::build_site()` and `pkgdown::build_site_github_pages()`.
 #' @export
 pkgdown_override <- function(..., path = brand_file()) {
-  c(list(template = list(bslib = brand_bslib(path))), list(...))
+  list(template = list(bslib = brand_bslib(path)), ...)
 }
 
 #' Bootstrap theme arguments for pkgdown
@@ -101,14 +101,10 @@ select_value <- function(value, mode) {
 }
 
 dark_variables <- function(brand) {
-  values <- c(
-    brand.yml::brand_sass_color(brand)$defaults,
-    brand.yml::brand_sass_typography(brand)$defaults
-  ) |>
-    lapply(sub, pattern = " !default$", replacement = "")
+  color <- brand$color
+  typography <- brand$typography
 
-  colors <- values[paste0(
-    "brand_color_",
+  theme_colors <- intersect(
     c(
       "primary",
       "secondary",
@@ -118,45 +114,33 @@ dark_variables <- function(brand) {
       "danger",
       "light",
       "dark"
-    )
-  )] |>
-    drop_null()
-
-  drop_null(c(
-    lapply(
-      c(
-        "body-bg-dark" = "brand_color_background",
-        "body-color-dark" = "brand_color_foreground",
-        "body-secondary-color-dark" = "brand_color_secondary",
-        "body-tertiary-color-dark" = "brand_color_tertiary",
-        "headings-color-dark" = "brand_typography_headings_color",
-        "code-color-dark" = "brand_typography_monospace_inline_color",
-        "brand-dark-code-bg" = "brand_typography_monospace_inline_background_color",
-        "brand-dark-pre-color" = "brand_typography_monospace_block_color",
-        "brand-dark-pre-bg" = "brand_typography_monospace_block_background_color",
-        "brand-dark-link-bg" = "brand_typography_link_background_color"
-      ),
-      function(default) values[[default]]
     ),
-    list(
-      "link-color-dark" = c(
-        values$brand_typography_link_color,
-        values$brand_color_primary
-      )[1],
-      "brand-dark-theme-colors" = if (length(colors)) {
-        paste0(
-          "(",
-          paste0(
-            '"',
-            sub("^brand_color_", "", names(colors)),
-            '": ',
-            unlist(colors),
-            collapse = ", "
-          ),
-          ")"
-        )
-      }
-    )
+    names(color)
+  )
+
+  drop_null(list(
+    "body-bg-dark" = color$background,
+    "body-color-dark" = color$foreground,
+    "body-secondary-color-dark" = color$secondary,
+    "body-tertiary-color-dark" = color$tertiary,
+    "navbar-dark-bg" = color$tertiary,
+    "headings-color-dark" = typography$headings$color,
+    "code-color-dark" = typography$monospace_inline$color,
+    "brand-dark-code-bg" = typography$monospace_inline$background_color,
+    "brand-dark-pre-color" = typography$monospace_block$color,
+    "brand-dark-pre-bg" = typography$monospace_block$background_color,
+    "brand-dark-link-bg" = typography$link$background_color,
+    "link-color-dark" = c(typography$link$color, color$primary)[1],
+    "brand-dark-theme-colors" = if (length(theme_colors)) {
+      paste0(
+        "(",
+        paste(
+          sprintf('"%s": %s', theme_colors, unlist(color[theme_colors])),
+          collapse = ", "
+        ),
+        ")"
+      )
+    }
   ))
 }
 
