@@ -69,8 +69,11 @@ brand_bslib <- function(path = brand_file()) {
   }
   brand$color$link <- NULL
 
+  light <- brand_mode(brand, "light", path)
+
   c(
-    list(brand = brand_mode(brand, "light", path)),
+    list(brand = light),
+    drop_null(list("navbar-bg" = light$color$primary)),
     dark_variables(brand_mode(brand, "dark", path))
   )
 }
@@ -123,7 +126,7 @@ dark_variables <- function(brand) {
     "body-color-dark" = color$foreground,
     "body-secondary-color-dark" = color$secondary,
     "body-tertiary-color-dark" = color$tertiary,
-    "navbar-dark-bg" = color$tertiary,
+    "navbar-dark-bg" = color$primary,
     "headings-color-dark" = typography$headings$color,
     "code-color-dark" = typography$monospace_inline$color,
     "brand-dark-code-bg" = typography$monospace_inline$background_color,
