@@ -72,7 +72,7 @@ typography:
       source: google
       weight: [400, 500, 600, 700]
       style: normal
-    - family: ValleySans
+    - family: Valley Sans
       source: file
       files:
         - path: https://www.visruth.com/fonts/ValleySans-Variable.woff2
@@ -104,7 +104,7 @@ typography:
           style: italic
 
   base: Domine
-  headings: ValleySans
+  headings: Valley Sans
   monospace: CommitMono
 
   monospace-inline:

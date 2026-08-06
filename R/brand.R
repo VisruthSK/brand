@@ -16,13 +16,90 @@ brand_file <- function() {
 #' `template: package: brand`.
 #'
 #' @param file Path to copy [brand_file()] to.
+#' @param use_fonts Also copy this package's `inst/fonts/` next to `file`, and
+#'   point the copy at those files rather than at the web. Typst reads neither
+#'   URLs nor WOFF2, so branded PDFs need a TTF or OTF per face in
+#'   `inst/fonts/`, each named `<family>-<weight>-<style>`; a declared face with
+#'   no such file is an error. Output bound for a browser needs none of this.
 #'
 #' @return `file`, invisibly.
 #' @export
-use_brand <- function(file = "_brand.yml") {
+use_brand <- function(file = "_brand.yml", use_fonts = FALSE) {
   dir.create(dirname(file), showWarnings = FALSE, recursive = TRUE)
-  file.copy(brand_file(), file, overwrite = TRUE)
+
+  if (!use_fonts) {
+    file.copy(brand_file(), file, overwrite = TRUE)
+    return(invisible(file))
+  }
+
+  brand <- yaml::read_yaml(brand_file())
+  brand$typography$fonts <- local_fonts(brand$typography$fonts)
+
+  fonts <- file.path(dirname(file), "fonts")
+  dir.create(fonts, showWarnings = FALSE)
+  file.copy(list.files(font_dir(), full.names = TRUE), fonts, overwrite = TRUE)
+  yaml::write_yaml(brand, file)
+
   invisible(file)
+}
+
+font_dir <- function() {
+  system.file("fonts", package = "brand", mustWork = TRUE)
+}
+
+face_names <- function(font) {
+  vapply(
+    font$files,
+    function(face) {
+      sprintf(
+        "%s-%s-%s",
+        gsub(" ", "", font$family),
+        if (is.null(face$weight)) 400 else face$weight,
+        if (is.null(face$style)) "normal" else face$style
+      )
+    },
+    ""
+  )
+}
+
+local_fonts <- function(fonts) {
+  available <- list.files(font_dir(), "\\.(ttf|otf)$")
+  names(available) <- sub("\\.[^.]+$", "", available)
+
+  wanted <- lapply(fonts, face_names)
+  missing <- setdiff(unlist(wanted), names(available))
+  if (length(missing)) {
+    stop(missing_faces(missing, available), call. = FALSE)
+  }
+
+  for (font in seq_along(fonts)) {
+    for (face in seq_along(wanted[[font]])) {
+      fonts[[font]]$files[[face]]$path <- file.path(
+        "fonts",
+        available[[wanted[[font]][[face]]]]
+      )
+    }
+  }
+  fonts
+}
+
+missing_faces <- function(missing, available) {
+  bullets <- function(x) paste0("  ", x, collapse = "\n")
+  sprintf(
+    paste(
+      "`use_fonts = TRUE` needs a local file for every font face in `%s`.",
+      "No file for:",
+      "%s",
+      "Faces are matched on `<family>-<weight>-<style>`, spaces stripped from",
+      "the family. Add each one as a `.ttf` or `.otf` to `%s`, which holds:",
+      "%s",
+      sep = "\n"
+    ),
+    brand_file(),
+    bullets(paste0(missing, ".ttf")),
+    font_dir(),
+    bullets(available)
+  )
 }
 
 #' Site configuration that applies this brand

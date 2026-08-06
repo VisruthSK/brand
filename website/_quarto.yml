@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: ../docs/website
+  pre-render: setup.R
+  render: [index.md, example.qmd]
+
+website:
+  title: brand
+  navbar:
+    left:
+      - text: Home
+        href: index.md
+      - text: Vignette
+        href: example.qmd
+    right:
+      - text: Package Site
+        href: https://brand.visruth.com/
+      - icon: github
+        href: https://github.com/VisruthSK/brand
+
+format:
+  html:
+    theme: brand
+    toc: true

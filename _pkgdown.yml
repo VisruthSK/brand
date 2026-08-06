@@ -5,11 +5,21 @@ template:
 
 navbar:
   structure:
-    left: [home, articles, slides, reference, news, links]
+    left:
+      [home, articles, revealjs, dashboard, typst, website, reference, news, links]
   components:
-    slides:
-      text: Slides
+    revealjs:
+      text: RevealJS
       href: slides/index.html
+    website:
+      text: Quarto Site
+      href: website/index.html
+    dashboard:
+      text: Dashboard
+      href: dashboard/index.html
+    typst:
+      text: Typst
+      href: pdf/typst.pdf
 
 development:
   mode: auto

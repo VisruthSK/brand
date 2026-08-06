@@ -4,10 +4,16 @@
 \alias{use_brand}
 \title{Copy this package's \verb{_brand.yml} into a project}
 \usage{
-use_brand(file = "_brand.yml")
+use_brand(file = "_brand.yml", use_fonts = FALSE)
 }
 \arguments{
 \item{file}{Path to copy \code{\link[=brand_file]{brand_file()}} to.}
+
+\item{use_fonts}{Also copy this package's \verb{inst/fonts/} next to \code{file}, and
+point the copy at those files rather than at the web. Typst reads neither
+URLs nor WOFF2, so branded PDFs need a TTF or OTF per face in
+\verb{inst/fonts/}, each named \verb{<family>-<weight>-<style>}; a declared face with
+no such file is an error. Output bound for a browser needs none of this.}
 }
 \value{
 \code{file}, invisibly.

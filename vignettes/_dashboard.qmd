@@ -1,0 +1,72 @@
+---
+title: "Example Dashboard"
+format:
+  dashboard:
+    theme: [brand, _dashboard.scss]
+---
+
+```{r}
+#| include: false
+brand <- yaml::read_yaml(brand::brand_file())
+palette <- brand$color$palette
+
+readable <- function(hex) {
+  channels <- strtoi(substring(hex, c(2, 4, 6), c(3, 5, 7)), 16L) / 255
+  if (sum(c(0.2126, 0.7152, 0.0722) * channels) > 0.4) "#1E1512" else "#F2E8DE"
+}
+
+tiles <- function(values) {
+  cells <- sprintf(
+    '<div style="display:flex;flex-direction:row;align-items:center;
+       justify-content:space-between;gap:1rem;overflow:hidden;min-height:0;
+       background:%s;color:%s;border-radius:.375rem;padding:0 .7rem">
+       <span>%s</span>
+       <span style="font-family:var(--bs-font-monospace);opacity:.75">%s</span>
+     </div>',
+    values,
+    vapply(values, readable, ""),
+    names(values),
+    values
+  )
+  knitr::raw_html(sprintf(
+    '<div style="display:grid;gap:.4rem;grid-auto-rows:1fr">%s</div>',
+    paste(cells, collapse = "")
+  ))
+}
+
+for_mode <- function(mode) {
+  tokens <- setdiff(names(brand$color), "palette")
+  values <- vapply(tokens, function(token) {
+    value <- brand$color[[token]]
+    value <- if (is.list(value)) value[[mode]] else value
+    if (value %in% names(palette)) palette[[value]] else value
+  }, "")
+  tiles(values)
+}
+```
+
+## Row {height="12%"}
+
+::: card
+### Valley Sans sets the headings {style="margin:0"}
+
+Domine sets body text and `CommitMono` sets code. Every colour below is read
+out of the same `_brand.yml` that styles this site.
+:::
+
+## Row
+
+```{r}
+#| title: Light
+for_mode("light")
+```
+
+```{r}
+#| title: Dark
+for_mode("dark")
+```
+
+```{r}
+#| title: Palette
+tiles(unlist(palette))
+```

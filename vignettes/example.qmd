@@ -14,21 +14,9 @@ knitr:
 brand <- yaml::read_yaml(brand::brand_file())
 palette <- brand$color$palette
 
-swatch <- function(value) {
-  hex <- if (value %in% names(palette)) palette[[value]] else value
-  paste0(
-    '<span style="display:inline-block;width:12px;height:12px;',
-    "background-color:",
-    hex,
-    ";margin-right:5px;",
-    'border:1px solid #ccc;vertical-align:middle;"></span>`',
-    hex,
-    "`"
-  )
-}
-
-for_mode <- function(value, mode) {
-  if (is.list(value)) value[[mode]] else value
+hex <- function(value, mode) {
+  value <- if (is.list(value)) value[[mode]] else value
+  paste0("`", if (value %in% names(palette)) palette[[value]] else value, "`")
 }
 ```
 
@@ -46,7 +34,7 @@ abcdefghijklmnopqrstuvwxyz 0123456789
 ```
 
 ```{r}
-brand::use_brand
+vapply(brand$typography$fonts, function(font) font$family, "")
 ```
 
 ## Theme colors (semantic)
@@ -59,27 +47,22 @@ tokens <- setdiff(names(brand$color), "palette")
 knitr::kable(
   data.frame(
     Token = tokens,
-    Light = vapply(tokens, function(t) swatch(for_mode(brand$color[[t]], "light")), ""),
-    Dark = vapply(tokens, function(t) swatch(for_mode(brand$color[[t]], "dark")), "")
+    Light = vapply(tokens, function(t) hex(brand$color[[t]], "light"), ""),
+    Dark = vapply(tokens, function(t) hex(brand$color[[t]], "dark"), "")
   ),
-  row.names = FALSE,
-  escape = FALSE
+  row.names = FALSE
 )
 ```
 
-## Palette (named swatches)
+## Palette (named colors)
 
 These are the single-value entries under `color.palette`.
 
 ```{r}
 #| echo: false
 knitr::kable(
-  data.frame(
-    Name = names(palette),
-    Value = vapply(names(palette), swatch, "")
-  ),
-  row.names = FALSE,
-  escape = FALSE
+  data.frame(Name = names(palette), Value = paste0("`", unlist(palette), "`")),
+  row.names = FALSE
 )
 ```
 
@@ -113,4 +96,4 @@ Caution callout.
 |---|---|
 | Link | <https://www.visruth.com> |
 | Inline code | `printf("hello")` |
-| List | - one<br>- two<br>- three |
+| Emphasis | *italic*, **bold**, and ***both*** |
