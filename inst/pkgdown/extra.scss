@@ -39,10 +39,6 @@ $brand-ochre-light: $warning !default;
 
   font-family: $headings-font-family;
 
-  #dropdown-lightswitch .fa {
-    font-size: 1.33333em;
-  }
-
   .nav-text.text-danger {
     color: var(--#{$prefix}navbar-color) !important;
 

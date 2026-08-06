@@ -18,7 +18,8 @@ template:
 
   includes:
     after_body: >
-      <script>document.querySelectorAll(".navbar .nav-text.text-danger").forEach(v => v.innerHTML = v.textContent.replace(/(\.\d+)$/, "<span>$1</span>"))</script>
+      <script>document.querySelectorAll(".navbar .nav-text.text-danger").forEach(v => v.innerHTML = v.textContent.replace(/(\.\d+)$/, "<span>$1</span>"));
+      document.querySelectorAll("[data-bs-theme-value] .fa").forEach(i => i.classList.add("fa-lg", "fa-fw"))</script>
 
 navbar:
   structure:
@@ -36,6 +37,6 @@ navbar:
       text: Links
       href: https://links.visruth.com/
     bluesky:
-      icon: fa-brands fa-bluesky
+      icon: fa-brands fa-bluesky fa-lg
       aria-label: Visit Bluesky
       href: https://bsky.app/profile/visruth.com
