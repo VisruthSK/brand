@@ -24,7 +24,7 @@ export type SitePage = {
   mask: string | undefined;
 };
 
-const docsDirectory = fileURLToPath(new URL("../docs", import.meta.url));
+export const docsDirectory = fileURLToPath(new URL("../docs", import.meta.url));
 
 const unbuiltSite = `No rendered site in ${docsDirectory}; run npm run build-docs first`;
 

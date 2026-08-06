@@ -36,8 +36,10 @@ brand::use_brand("vignettes/_brand.yml", use_fonts = TRUE)
 quarto::quarto_render(
   "vignettes/example.qmd",
   output_format = "typst",
+  metadata = list(format = list(typst = list(`keep-typ` = TRUE))),
   quarto_args = c("--output-dir", "../docs/pdf")
 )
 file.rename("docs/pdf/example.pdf", "docs/pdf/typst.pdf")
+file.rename("vignettes/example.typ", "docs/pdf/example.typ")
 
 unlink(c("vignettes/_brand.yml", "vignettes/fonts"), recursive = TRUE)
