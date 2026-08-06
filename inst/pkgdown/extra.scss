@@ -47,8 +47,17 @@ $brand-ochre-light: $warning !default;
     }
   }
 
-  .nav-item.active .nav-link {
+  .nav-item.active .nav-link,
+  .nav-item .nav-link:hover {
     background: color-mix(in oklab, currentcolor 12%, transparent);
+  }
+
+  .fa-github {
+    font-size: 1.33em;
+  }
+
+  #dropdown-lightswitch .fa {
+    font-size: 1.42em;
   }
 }
 

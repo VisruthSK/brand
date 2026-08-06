@@ -16,6 +16,7 @@ template:
     input-placeholder-color: color-mix(in oklab, var(--bs-navbar-color) 70%, transparent)
     input-border-color: transparent
     input-padding-y: 0.25rem
+    input-padding-x: 0.55rem
 
   includes:
     after_body: >
@@ -37,7 +38,7 @@ navbar:
       text: Links
       href: https://links.visruth.com/
     bluesky:
-      icon: fa-brands fa-bluesky
+      icon: fa-brands fa-bluesky fa-lg
       aria-label: Visit Bluesky
       href: https://bsky.app/profile/visruth.com
     lightswitch:
