@@ -2,7 +2,7 @@
 title: "Example Dashboard"
 format:
   dashboard:
-    theme: [brand, _dashboard.scss]
+    theme: brand
 ---
 
 ```{r}

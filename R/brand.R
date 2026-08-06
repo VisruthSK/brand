@@ -130,8 +130,9 @@ pkgdown_override <- function(..., path = brand_file()) {
 #' dark mode becomes the matching Bootstrap `*-dark` Sass variables, plus the
 #' values `extra.scss` needs for the tokens Bootstrap keeps mode-invariant.
 #'
-#' Quarto reads `color.link` where Bootstrap spells the same thing
-#' `typography.link.color`; either form works here.
+#' Bootstrap spells the link colour `typography.link.color`, which is also the
+#' only form Quarto's Typst output honours -- it ignores `color.link` and falls
+#' back to `color.primary`. `color.link` is accepted here for completeness.
 #'
 #' @param path A `_brand.yml`. Values under `color` and `typography` may be
 #'   `light`/`dark` maps.
