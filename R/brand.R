@@ -37,7 +37,7 @@ use_brand <- function(file = "_brand.yml") {
 #' ```
 #'
 #' @param ... Further `_pkgdown.yml` values, such as `destination`.
-#' @param path A `_brand.yml`, as read by [brand_bslib()].
+#' @param path A `_brand.yml`, in the form described in [brand_file()].
 #'
 #' @return A list suitable for the `override` argument of
 #'   `pkgdown::build_site()` and `pkgdown::build_site_github_pages()`.
@@ -60,7 +60,7 @@ pkgdown_override <- function(..., path = brand_file()) {
 #'   `light`/`dark` maps.
 #'
 #' @return A named list of `bslib::bs_theme()` arguments.
-#' @export
+#' @noRd
 brand_bslib <- function(path = brand_file()) {
   brand <- yaml::read_yaml(path)
 

@@ -34,17 +34,9 @@ for_mode <- function(value, mode) {
 
 ## Typography
 
-## H2
-
-Header 2
-
 ### H3
 
-Header 3
-
 #### H4
-
-Header 4
 
 Paragraph text should use the brand base font. Inline code should use the brand monospace: `const x = 42`.
 

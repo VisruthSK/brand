@@ -10,8 +10,6 @@ template:
     preset: litera
     font-family-sans-serif: var(--bs-body-font-family)
     font-family-serif: var(--bs-body-font-family)
-    navbar-padding-y: 0.75rem
-    pkgdown-nav-height: 73px
     pkgdown-footer-color: var(--bs-secondary-color)
     input-color: var(--bs-navbar-color)
     input-bg: color-mix(in oklab, var(--bs-navbar-color) 12%, transparent)
@@ -28,7 +26,7 @@ navbar:
     right: [search, bluesky, github, lightswitch]
   components:
     home:
-      icon: fa-home
+      icon: fa-home fa-lg
       aria-label: Go to homepage
       href: index.html
     reference:
@@ -39,5 +37,5 @@ navbar:
       href: https://links.visruth.com/
     bluesky:
       icon: fa-brands fa-bluesky
-      aria-label: Visit our Bluesky profile
+      aria-label: Visit Bluesky
       href: https://bsky.app/profile/visruth.com

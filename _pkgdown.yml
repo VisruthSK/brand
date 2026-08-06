@@ -3,5 +3,13 @@ url: https://brand.visruth.com/
 template:
   package: brand
 
+navbar:
+  structure:
+    left: [home, articles, slides, reference, news, links]
+  components:
+    slides:
+      text: Slides
+      href: slides/index.html
+
 development:
   mode: auto

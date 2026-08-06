@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^vignettes/\.quarto$
 ^vignettes/*_files$
+^vignettes/_brand\.yml$
 ^LICENSE\.md$
 ^_pkgdown\.yml$
 ^docs$

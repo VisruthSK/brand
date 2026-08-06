@@ -42,6 +42,10 @@ color:
     light: oxblood
     dark: oxblood-light
 
+  link:
+    light: carmine
+    dark: oxblood-light
+
   secondary:
     light: taupe
     dark: taupe-light
@@ -68,33 +72,49 @@ typography:
       source: google
       weight: [400, 500, 600, 700]
       style: normal
-    - family: DM Serif Display
-      source: google
-      weight: 400
-      style: [normal, italic]
-    - family: IBM Plex Mono
-      source: google
-      weight: [400, 600]
-      style: [normal, italic]
+    - family: ValleySans
+      source: file
+      files:
+        - path: https://www.visruth.com/fonts/ValleySans-Variable.woff2
+          weight: 400
+          style: normal
+        - path: https://www.visruth.com/fonts/ValleySans-Variable.woff2
+          weight: 700
+          style: normal
+        - path: https://www.visruth.com/fonts/ValleySans-Italic-Variable.woff2
+          weight: 400
+          style: italic
+        - path: https://www.visruth.com/fonts/ValleySans-Italic-Variable.woff2
+          weight: 700
+          style: italic
+    - family: CommitMono
+      source: file
+      files:
+        - path: https://www.visruth.com/fonts/CommitMono-400-Regular.woff2
+          weight: 400
+          style: normal
+        - path: https://www.visruth.com/fonts/CommitMono-400-Italic.woff2
+          weight: 400
+          style: italic
+        - path: https://www.visruth.com/fonts/CommitMono-700-Regular.woff2
+          weight: 700
+          style: normal
+        - path: https://www.visruth.com/fonts/CommitMono-700-Italic.woff2
+          weight: 700
+          style: italic
 
-  base:
-    family: Domine
-    size: 1.125rem
-    line-height: 1.7
-  headings:
-    family: DM Serif Display
-    weight: 400
-    line-height: 1.15
-  monospace:
-    family: IBM Plex Mono
-    size: 0.875em
+  base: Domine
+  headings: ValleySans
+  monospace: CommitMono
 
   monospace-inline:
+    color:
+      light: carmine
+      dark: oxblood-light
     background-color:
       light: code-bg-light
       dark: code-bg-dark
   monospace-block:
-    line-height: 1.6
     background-color:
       light: code-bg-light
       dark: code-bg-dark
@@ -102,16 +122,7 @@ typography:
 defaults:
   bootstrap:
     defaults:
-      enable-rounded: false
       border-color: $brand-taupe-light
       border-color-dark: $brand-taupe
       table-border-color: var(--bs-border-color)
       input-border-color: var(--bs-border-color)
-      h1-font-size: 2.75rem
-      h2-font-size: 2rem
-      h3-font-size: 1.5rem
-      h4-font-size: 1.25rem
-      h5-font-size: 1.125rem
-      h6-font-size: 1rem
-      headings-margin-bottom: 0.75rem
-      paragraph-margin-bottom: 1.25rem

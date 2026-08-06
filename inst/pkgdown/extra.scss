@@ -1,11 +1,29 @@
 $brand-dark-theme-colors: () !default;
 $brand-dark-code-bg: $code-bg !default;
-$brand-dark-pre-color: $pre-color !default;
 $brand-dark-pre-bg: $pre-bg !default;
-$brand-dark-link-bg: null !default;
+$brand-ochre-light: $warning !default;
 
 @if $brand-dark-theme-colors == () {
   @warn "Unbranded build: pass override = brand::pkgdown_override() to pkgdown.";
+}
+
+@each $family, $file, $weight, $style
+  in (
+    (ValleySans, "ValleySans-Variable", 100 900, normal),
+    (ValleySans, "ValleySans-Italic-Variable", 100 900, italic),
+    (CommitMono, "CommitMono-400-Regular", 400, normal),
+    (CommitMono, "CommitMono-400-Italic", 400, italic),
+    (CommitMono, "CommitMono-700-Regular", 700, normal),
+    (CommitMono, "CommitMono-700-Italic", 700, italic)
+  )
+{
+  @font-face {
+    font-family: $family;
+    src: url("https://www.visruth.com/fonts/#{$file}.woff2") format("woff2");
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
 }
 
 :root pre {
@@ -19,12 +37,10 @@ $brand-dark-link-bg: null !default;
     }
   }
 
-  .nav-link .fa {
-    width: 1.25em;
-    font-size: 1.5em;
-    line-height: 0;
-    text-align: center;
-    vertical-align: middle;
+  font-family: $headings-font-family;
+
+  #dropdown-lightswitch .fa {
+    font-size: 1.33333em;
   }
 
   .nav-text.text-danger {
@@ -40,10 +56,6 @@ $brand-dark-link-bg: null !default;
   }
 }
 
-#toc > .nav a.nav-link.active {
-  background-color: RGBA(var(--#{$prefix}primary-rgb), 0.2);
-}
-
 :root[data-bs-theme="dark"] {
   @each $name, $color in $brand-dark-theme-colors {
     --#{$prefix}#{$name}: #{$color};
@@ -53,25 +65,11 @@ $brand-dark-link-bg: null !default;
     --#{$prefix}#{$name}-border-subtle: #{shade-color($color, 40%)};
   }
 
-  @if $brand-dark-link-bg != null {
-    --#{$prefix}link-bg: #{$brand-dark-link-bg};
-  }
-
   code {
     background-color: $brand-dark-code-bg;
   }
 
   pre {
-    color: $brand-dark-pre-color;
     background-color: $brand-dark-pre-bg;
-  }
-}
-
-@each $level, $size in (2: $h2-font-size, 3: $h3-font-size, 4: $h4-font-size, 5: $h5-font-size) {
-  h#{$level},
-  .h#{$level} {
-    @include font-size($size);
-
-    font-weight: $headings-font-weight;
   }
 }

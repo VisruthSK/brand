@@ -9,7 +9,7 @@ pkgdown_override(..., path = brand_file())
 \arguments{
 \item{...}{Further \verb{_pkgdown.yml} values, such as \code{destination}.}
 
-\item{path}{A \verb{_brand.yml}, as read by \code{\link[=brand_bslib]{brand_bslib()}}.}
+\item{path}{A \verb{_brand.yml}, in the form described in \code{\link[=brand_file]{brand_file()}}.}
 }
 \value{
 A list suitable for the \code{override} argument of
