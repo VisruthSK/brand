@@ -10,12 +10,14 @@ export const palette = {
     foreground: "#1E1512",
     primary: "#380C12",
     link: "#A8283A",
+    code: "#A8283A",
   },
   dark: {
     background: "#0A0A0A",
     foreground: "#F2E8DE",
     primary: "#B0293A",
     link: "#D25668",
+    code: "#D25668",
   },
 };
 

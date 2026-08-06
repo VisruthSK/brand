@@ -61,6 +61,7 @@ for (const scheme of schemes) {
         "font-family",
         fontFamily(fonts.monospace),
       );
+      await expect(page.locator(selectors.code).first()).toHaveCSS("color", rgb(colors.code));
       if (selectors.link !== undefined) {
         await expect(page.locator(selectors.link).first()).toHaveCSS("color", rgb(colors.link));
       }
