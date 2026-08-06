@@ -84,6 +84,20 @@ export async function expectFontsLoaded(page: Page, families: string[]) {
       ),
     )
     .toEqual(expect.arrayContaining(families));
+  await expect.poll(() => page.evaluate(() => document.fonts.status)).toBe("loaded");
+}
+
+async function expectLayoutSettled(page: Page) {
+  let previous = 0;
+  let repeats = 0;
+  await expect
+    .poll(async () => {
+      const height = await page.evaluate(() => document.documentElement.scrollHeight);
+      repeats = height === previous ? repeats + 1 : 0;
+      previous = height;
+      return repeats;
+    })
+    .toBeGreaterThan(2);
 }
 
 export async function openPage(page: Page, target: SitePage, scheme: Scheme) {
@@ -101,6 +115,7 @@ export async function openPage(page: Page, target: SitePage, scheme: Scheme) {
   }
   await expect(page.locator("body")).toHaveCSS("background-color", rgb(palette[scheme].background));
   await expectFontsLoaded(page, [fonts.base, fonts.headings]);
+  await expectLayoutSettled(page);
 }
 
 export async function openSlide(page: Page, index: number) {
