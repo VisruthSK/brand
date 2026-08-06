@@ -24,6 +24,11 @@ export default defineConfig({
       name: "chromium",
       use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 800 } },
     },
+    {
+      name: "mobile",
+      use: { ...devices["Pixel 7"], deviceScaleFactor: 1 },
+      grepInvert: /deck|slides-|typst/,
+    },
   ],
   webServer: {
     command: "npx http-server docs --port 4173 --silent -c-1",
