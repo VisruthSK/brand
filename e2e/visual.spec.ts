@@ -2,7 +2,9 @@ import { schemes } from "./brand";
 import { expect, test } from "./fixtures";
 import { deckSlides, openPage, openSlide, sitePages } from "./site";
 
-for (const target of sitePages) {
+const tooTallToSnapshot = new Set(["LICENSE"]);
+
+for (const target of sitePages.filter((target) => !tooTallToSnapshot.has(target.name))) {
   for (const scheme of schemes) {
     test(`${target.name} ${scheme}`, async ({ page }) => {
       await openPage(page, target, scheme);
