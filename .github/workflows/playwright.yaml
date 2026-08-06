@@ -42,7 +42,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Build docs
-        run: npm run build-docs
+        run: npm run render
 
       - name: Run visual regression tests
         run: npm test
