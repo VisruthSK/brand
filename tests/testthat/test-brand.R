@@ -100,8 +100,8 @@ test_that("brand_bslib() derives the dark mode as Bootstrap variables", {
 
   expect_equal(theme[["body-bg-dark"]], "#0A0A0A")
   expect_equal(theme[["body-color-dark"]], "#F2E8DE")
-  expect_equal(theme[["link-color-dark"]], "#DA5265")
-  expect_match(theme[["brand-dark-theme-colors"]], '^\\("primary": #DA5265,')
+  expect_equal(theme[["link-color-dark"]], "#D25668")
+  expect_match(theme[["brand-dark-theme-colors"]], '^\\("primary": #B0293A,')
 })
 
 test_that("brand_bslib() colours the navbar from both modes", {

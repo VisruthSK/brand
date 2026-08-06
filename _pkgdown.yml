@@ -11,15 +11,18 @@ navbar:
     revealjs:
       text: RevealJS
       href: slides/index.html
+      target: _blank
     website:
       text: Quarto Site
       href: website/index.html
     dashboard:
       text: Dashboard
       href: dashboard/index.html
+      target: _blank
     typst:
       text: Typst
       href: pdf/typst.pdf
+      target: _blank
 
 development:
   mode: auto

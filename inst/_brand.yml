@@ -16,7 +16,7 @@ color:
     shell: "#F2E8DE"
 
     oxblood: "#380C12"
-    oxblood-light: "#DA5265"
+    oxblood-light: "#B0293A"
     taupe: "#6B5B52"
     taupe-light: "#C9BAAE"
     blush: "#EAE0D8"
@@ -26,7 +26,7 @@ color:
     ochre: "#A8721C"
     ochre-light: "#F0BC5C"
     carmine: "#A8283A"
-    carmine-light: "#F0879A"
+    carmine-light: "#D25668"
 
     code-bg-light: "#F0E6DC"
     code-bg-dark: "#1D1512"
@@ -106,7 +106,7 @@ typography:
   monospace-inline:
     color:
       light: carmine
-      dark: oxblood-light
+      dark: carmine-light
     background-color:
       light: code-bg-light
       dark: code-bg-dark
@@ -117,7 +117,7 @@ typography:
   link:
     color:
       light: carmine
-      dark: oxblood-light
+      dark: carmine-light
 
 defaults:
   bootstrap:
@@ -132,6 +132,6 @@ defaults:
         include-in-header:
           - text: |
               <style>
-                .navbar-title { font-family: "Valley Sans"; }
-                .quarto-color-scheme-toggle .bi::before { filter: brightness(0) invert(1); }
+                .navbar-title { font-family: "Valley Sans" }
+                .quarto-color-scheme-toggle .bi::before { filter: brightness(0) invert(1) }
               </style>
