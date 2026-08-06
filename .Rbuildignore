@@ -12,5 +12,13 @@
 ^pkgdown$
 ^\.github$
 ^tools$
+^e2e$
+^playwright\.config\.ts$
+^playwright-report$
+^test-results$
+^\.playwright$
+^package\.json$
+^package-lock\.json$
+^node_modules$
 
 ^AGENTS\.md$
