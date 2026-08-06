@@ -9,16 +9,16 @@ brand::use_brand("vignettes/_brand.yml")
 quarto::quarto_render(
   "vignettes/example.qmd",
   output_format = "revealjs",
-  quarto_args = c(
-    "--output-dir",
-    "../docs/slides",
-    "-M",
-    "slide-number:true",
-    "-M",
-    "smaller:true",
-    "-M",
-    "scrollable:true"
-  )
+  metadata = list(
+    format = list(
+      revealjs = list(
+        `slide-number` = TRUE,
+        smaller = TRUE,
+        scrollable = TRUE
+      )
+    )
+  ),
+  quarto_args = c("--output-dir", "../docs/slides")
 )
 file.rename("docs/slides/example.html", "docs/slides/index.html")
 

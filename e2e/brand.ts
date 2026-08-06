@@ -14,8 +14,8 @@ export const palette = {
   dark: {
     background: "#0A0A0A",
     foreground: "#F2E8DE",
-    primary: "#DA5265",
-    link: "#DA5265",
+    primary: "#B0293A",
+    link: "#D25668",
   },
 };
 
