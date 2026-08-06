@@ -37,7 +37,7 @@ navbar:
       text: Links
       href: https://links.visruth.com/
     bluesky:
-      icon: fa-brands fa-bluesky fa-lg
+      icon: fa-brands fa-bluesky
       aria-label: Visit Bluesky
       href: https://bsky.app/profile/visruth.com
     lightswitch:
