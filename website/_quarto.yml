@@ -20,5 +20,7 @@ website:
 
 format:
   html:
-    theme: brand
+    theme:
+      light: brand
+      dark: brand
     toc: true
