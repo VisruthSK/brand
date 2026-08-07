@@ -10,6 +10,7 @@ brand::use_brand("vignettes/_brand.yml")
 quarto::quarto_render(
   "vignettes/example.qmd",
   output_format = "revealjs",
+  output_file = "index.html",
   metadata = list(
     format = list(
       revealjs = list(
@@ -21,14 +22,13 @@ quarto::quarto_render(
   ),
   quarto_args = c("--output-dir", "../docs/slides")
 )
-file.rename("docs/slides/example.html", "docs/slides/index.html")
 
 quarto::quarto_render(
   "vignettes/_dashboard.qmd",
   output_format = "dashboard",
+  output_file = "index.html",
   quarto_args = c("--output-dir", "../docs/dashboard")
 )
-file.rename("docs/dashboard/_dashboard.html", "docs/dashboard/index.html")
 
 quarto::quarto_render("website")
 
@@ -37,10 +37,10 @@ brand::use_brand("vignettes/_brand.yml", use_fonts = TRUE)
 quarto::quarto_render(
   "vignettes/example.qmd",
   output_format = "typst",
+  output_file = "typst.pdf",
   metadata = list(format = list(typst = list(`keep-typ` = TRUE))),
   quarto_args = c("--output-dir", "../docs/pdf")
 )
-file.rename("docs/pdf/example.pdf", "docs/pdf/typst.pdf")
 file.rename("vignettes/example.typ", "docs/pdf/example.typ")
 
 unlink(c("vignettes/_brand.yml", "vignettes/fonts"), recursive = TRUE)

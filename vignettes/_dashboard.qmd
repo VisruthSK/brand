@@ -10,9 +10,16 @@ format:
 brand <- yaml::read_yaml(brand::brand_file())
 palette <- brand$color$palette
 
+resolve <- function(value) {
+  if (value %in% names(palette)) palette[[value]] else value
+}
+
+on_light <- resolve(brand$color$foreground$light)
+on_dark <- resolve(brand$color$foreground$dark)
+
 readable <- function(hex) {
   channels <- strtoi(substring(hex, c(2, 4, 6), c(3, 5, 7)), 16L) / 255
-  if (sum(c(0.2126, 0.7152, 0.0722) * channels) > 0.4) "#1E1512" else "#F2E8DE"
+  if (sum(c(0.2126, 0.7152, 0.0722) * channels) > 0.4) on_light else on_dark
 }
 
 tiles <- function(values) {
@@ -41,8 +48,7 @@ for_mode <- function(mode) {
   tokens <- setdiff(names(brand$color), "palette")
   values <- vapply(tokens, function(token) {
     value <- brand$color[[token]]
-    value <- if (is.list(value)) value[[mode]] else value
-    if (value %in% names(palette)) palette[[value]] else value
+    resolve(if (is.list(value)) value[[mode]] else value)
   }, "")
   tiles(values)
 }
@@ -51,10 +57,10 @@ for_mode <- function(mode) {
 ## Row {height="12%"}
 
 ::: card
-### Valley Sans sets the headings {style="margin:0"}
+### This heading uses the brand headings font {style="margin:0"}
 
-Domine sets body text and `CommitMono` sets code. Every colour below is read
-out of the same `_brand.yml` that styles this site.
+So do this body text and this `inline code`, and so does every colour below:
+all of it is read out of the one `_brand.yml` that styles this site.
 :::
 
 ## Row
