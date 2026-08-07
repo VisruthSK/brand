@@ -15,6 +15,7 @@ template:
     input-bg: color-mix(in oklab, var(--bs-navbar-color) 12%, transparent)
     input-placeholder-color: color-mix(in oklab, var(--bs-navbar-color) 70%, transparent)
     input-border-color: transparent
+    # measured navbar; remeasure if the headings font changes
     pkgdown-nav-height: 61px
 
   includes:
