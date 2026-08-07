@@ -8,4 +8,8 @@ website/_brand.yml
 website/index.md
 website/example.qmd
 *.typ
+node_modules
+playwright-report
+test-results
+.playwright
 

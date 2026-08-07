@@ -1,0 +1,16 @@
+{
+  "name": "brand-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "Rscript tools/build-docs.R",
+    "test": "playwright test",
+    "test:update": "playwright test --update-snapshots",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.1.2",
+    "http-server": "^14.1.1"
+  }
+}
