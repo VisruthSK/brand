@@ -13,7 +13,6 @@ jobs:
     runs-on: windows-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      TMPDIR: ${{ runner.temp }}
     steps:
       - uses: actions/checkout@v7
 
@@ -44,6 +43,8 @@ jobs:
 
       - name: Build docs
         run: npm run render
+        env:
+          TMPDIR: ${{ runner.temp }}
 
       - name: Run visual regression tests
         run: npm test
