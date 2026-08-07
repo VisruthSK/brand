@@ -124,8 +124,6 @@ defaults:
     defaults:
       border-color: $brand-taupe-light
       border-color-dark: $brand-taupe
-      table-border-color: var(--bs-border-color)
-      input-border-color: var(--bs-border-color)
   quarto:
     format:
       dashboard:
