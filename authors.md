@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/VisruthSK/brand/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/VisruthSK/brand/blob/v1.0.0/DESCRIPTION)
 
 Srimath Kandali V (2026). *brand: Personal Brand for Quarto and
 pkgdown*. R package version 1.0.0, <https://brand.visruth.com/>.
