@@ -32,7 +32,9 @@ these things:
     which both point at this repo
 4.  [`DESCRIPTION`](https://brand.visruth.com/DESCRIPTION): the author
     and the url
-5.  Optionally, this [`README.md`](https://brand.visruth.com/README.md)!
+5.  The snapshots in [`e2e/`](https://brand.visruth.com/e2e), which are
+    pictures of my theme: `npm run render && npm run test:update`
+6.  Optionally, this [`README.md`](https://brand.visruth.com/README.md)!
 
 Build the site with
 [`tools/build-docs.R`](https://brand.visruth.com/tools/build-docs.R), or

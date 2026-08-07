@@ -47,9 +47,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-645c5e741be0e279ca6dbd5338b7a2b7.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-cd105ab0bec2509d455d7f0ab7562c76.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-9e7d53f68c2d1cb01241bf32e77d5506.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-cd105ab0bec2509d455d7f0ab7562c76.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-828d38583ba7c1a5ef37d60c337e81e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-9b8d54cad47084f9e5549d72393b8fac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-828d38583ba7c1a5ef37d60c337e81e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -318,6 +318,7 @@ ul.task-list li input[type="checkbox"] {
 <li>The files in <a href="https://github.com/VisruthSK/brand/blob/main/inst/fonts"><code>inst/fonts/</code></a>, which Typst needs for any family you self-host (I serve mine from <a href="https://www.visruth.com" class="uri">https://www.visruth.com</a>; families on <a href="https://fonts.google.com">Google Fonts</a> need nothing here)</li>
 <li><a href="https://github.com/VisruthSK/brand/blob/main/_pkgdown.yml"><code>_pkgdown.yml</code></a>, specifically the url; <a href="https://github.com/VisruthSK/brand/blob/main/inst/pkgdown/_pkgdown.yml"><code>inst/pkgdown/_pkgdown.yml</code></a>, removing the Links and Bluesky entries from both <code>navbar.structure</code> and <code>navbar.components</code>; and <a href="https://github.com/VisruthSK/brand/blob/main/website/_quarto.yml"><code>website/_quarto.yml</code></a> plus <a href="https://github.com/VisruthSK/brand/blob/main/website/setup.R"><code>website/setup.R</code></a>, which both point at this repo</li>
 <li><a href="https://github.com/VisruthSK/brand/blob/main/DESCRIPTION"><code>DESCRIPTION</code></a>: the author and the url</li>
+<li>The snapshots in <a href="https://github.com/VisruthSK/brand/blob/main/e2e"><code>e2e/</code></a>, which are pictures of my theme: <code>npm run render &amp;&amp; npm run test:update</code></li>
 <li>Optionally, this <a href="https://github.com/VisruthSK/brand/blob/main/README.md"><code>README.md</code></a>!</li>
 </ol>
 <p>Build the site with <a href="https://github.com/VisruthSK/brand/blob/main/tools/build-docs.R"><code>tools/build-docs.R</code></a>, or at least pass <code>override = brand::pkgdown_override()</code> to pkgdown. A plain <code>pkgdown::build_site()</code> cannot reach the brand file and will warn and give you an unstyled site.</p>

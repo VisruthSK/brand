@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="index.html">brand</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,11 +42,17 @@
 <li><a class="dropdown-item" href="articles/example.html">Example Vignette</a></li>
   </ul>
 </li>
-<li class="nav-item"><a class="nav-link" href="slides/index.html" target="_blank">RevealJS</a></li>
-<li class="nav-item"><a class="nav-link" href="dashboard/index.html" target="_blank">Dashboard</a></li>
-<li class="nav-item"><a class="nav-link" href="pdf/typst.pdf" target="_blank">Typst</a></li>
-<li class="nav-item"><a class="nav-link" href="website/index.html">Quarto Site</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-previews" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Previews</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-previews">
+<li><a class="dropdown-item" href="slides/index.html" target="_blank">RevealJS</a></li>
+    <li><a class="dropdown-item" href="dashboard/index.html" target="_blank">Dashboard</a></li>
+    <li><a class="dropdown-item" href="pdf/typst.pdf" target="_blank">Typst</a></li>
+    <li><a class="dropdown-item" href="website/index.html">Quarto Site</a></li>
+  </ul>
+</li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Functions</a></li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://links.visruth.com/">Links</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -85,6 +91,8 @@
 <a href="_pkgdown.yml"><code>_pkgdown.yml</code></a>, specifically the url; <a href="inst/pkgdown/_pkgdown.yml"><code>inst/pkgdown/_pkgdown.yml</code></a>, removing the Links and Bluesky entries from both <code>navbar.structure</code> and <code>navbar.components</code>; and <a href="website/_quarto.yml"><code>website/_quarto.yml</code></a> plus <a href="website/setup.R"><code>website/setup.R</code></a>, which both point at this repo</li>
 <li>
 <a href="DESCRIPTION"><code>DESCRIPTION</code></a>: the author and the url</li>
+<li>The snapshots in <a href="e2e"><code>e2e/</code></a>, which are pictures of my theme: <code>npm run render &amp;&amp; npm run test:update</code>
+</li>
 <li>Optionally, this <a href="README.html"><code>README.md</code></a>!</li>
 </ol>
 <p>Build the site with <a href="tools/build-docs.R"><code>tools/build-docs.R</code></a>, or at least pass <code>override = brand::pkgdown_override()</code> to pkgdown. A plain <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> cannot reach the brand file and will warn and give you an unstyled site.</p>
