@@ -7,7 +7,7 @@ vignettes/fonts
 website/_brand.yml
 website/index.md
 website/example.qmd
-*.typ
+vignettes/*.typ
 node_modules
 playwright-report
 test-results
