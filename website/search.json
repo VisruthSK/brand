@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "example.html",
+    "href": "example.html",
+    "title": "Example Vignette",
+    "section": "",
+    "text": "Paragraph text should use the brand base font. Inline code should use the brand monospace: const x = 42.\ntext block should use the brand monospace.\nabcdefghijklmnopqrstuvwxyz 0123456789\n\nHeadings: Valley Sans\nBody: Domine\nCode: CommitMono"
+  },
+  {
+    "objectID": "example.html#typography",
+    "href": "example.html#typography",
+    "title": "Example Vignette",
+    "section": "",
+    "text": "Paragraph text should use the brand base font. Inline code should use the brand monospace: const x = 42.\ntext block should use the brand monospace.\nabcdefghijklmnopqrstuvwxyz 0123456789\n\nHeadings: Valley Sans\nBody: Domine\nCode: CommitMono"
+  },
+  {
+    "objectID": "example.html#theme-colors-semantic",
+    "href": "example.html#theme-colors-semantic",
+    "title": "Example Vignette",
+    "section": "Theme colors (semantic)",
+    "text": "Theme colors (semantic)\nRead straight out of _brand.yml, the same file that styles this site.\n\n\n\n\n\nToken\nLight\nDark\n\n\n\n\nbackground\n#F6EFE1\n#0A0A0A\n\n\nforeground\n#1E1512\n#F2E8DE\n\n\nprimary\n#380C12\n#B0293A\n\n\nsecondary\n#6B5B52\n#C9BAAE\n\n\ntertiary\n#EAE0D8\n#241813\n\n\nsuccess\n#146860\n#5FCBB8\n\n\ninfo\n#380C12\n#B0293A\n\n\nwarning\n#A8721C\n#F0BC5C\n\n\ndanger\n#A8283A\n#D25668"
+  },
+  {
+    "objectID": "example.html#palette-named-colors",
+    "href": "example.html#palette-named-colors",
+    "title": "Example Vignette",
+    "section": "Palette (named colors)",
+    "text": "Palette (named colors)\nThese are the single-value entries under color.palette.\n\n\n\n\n\nName\nValue\n\n\n\n\ncream\n#F6EFE1\n\n\nblackish\n#0A0A0A\n\n\nespresso\n#1E1512\n\n\nshell\n#F2E8DE\n\n\noxblood\n#380C12\n\n\noxblood-light\n#B0293A\n\n\ntaupe\n#6B5B52\n\n\ntaupe-light\n#C9BAAE\n\n\nblush\n#EAE0D8\n\n\nsable\n#241813\n\n\nteal\n#146860\n\n\nteal-light\n#5FCBB8\n\n\nochre\n#A8721C\n\n\nochre-light\n#F0BC5C\n\n\ncarmine\n#A8283A\n\n\ncarmine-light\n#D25668\n\n\ncode-bg-light\n#F0E6DC\n\n\ncode-bg-dark\n#1D1512"
+  },
+  {
+    "objectID": "example.html#components",
+    "href": "example.html#components",
+    "title": "Example Vignette",
+    "section": "Components",
+    "text": "Components\n\n\n\n\n\n\nNote\n\n\n\nInfo callout.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nWarning callout.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nDanger callout.\n\n\n\n\n\n\n\n\nTip\n\n\n\nTip callout.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nCaution callout.\n\n\n\nBlockquote example. This should remain readable in both light and dark modes.\n\n\nTable\n\n\n\nItem\nExample\n\n\n\n\nLink\nhttps://www.visruth.com\n\n\nInline code\nprintf(\"hello\")\n\n\nEmphasis\nitalic, bold, and both"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Personal Brand",
+    "section": "",
+    "text": "Personal Brand\nPlease do not use this without modification if you are not me.\n\nA pkgdown template package driven by a single _brand.yml file. It also exports brand::use_brand(), which copies that brand file into the working directory to style Shiny apps, Quarto documents, and anything else that reads brand.yml. Pass use_fonts = TRUE only if you self-host a font; families from Google Fonts need nothing extra, Typst included.\nTo use this, just click the green “Use this template” button and change these things:\n\nThe actual inst/_brand.yml\nThe files in inst/fonts/, which Typst needs for any family you self-host (I serve mine from https://www.visruth.com; families on Google Fonts need nothing here)\n_pkgdown.yml, specifically the url; inst/pkgdown/_pkgdown.yml, removing the Links and Bluesky entries from both navbar.structure and navbar.components; and website/_quarto.yml plus website/setup.R, which both point at this repo\nDESCRIPTION: the author and the url\nOptionally, this README.md!\n\nBuild the site with tools/build-docs.R, or at least pass override = brand::pkgdown_override() to pkgdown. A plain pkgdown::build_site() cannot reach the brand file and will warn and give you an unstyled site.\nIf you do use this repo as a template it would be nice if you pointed back to this repo somewhere unobtrusive."
+  }
+]
