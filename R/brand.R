@@ -6,11 +6,7 @@
 #' @return Absolute path to the installed `_brand.yml`.
 #' @export
 brand_file <- function() {
-  system.file("_brand.yml", package = this_package(), mustWork = TRUE)
-}
-
-this_package <- function() {
-  environmentName(topenv())
+  system.file("_brand.yml", package = "brand", mustWork = TRUE)
 }
 
 #' Copy this package's `_brand.yml` into a project
@@ -50,7 +46,7 @@ use_brand <- function(file = "_brand.yml", use_fonts = FALSE) {
 }
 
 font_dir <- function() {
-  system.file("fonts", package = this_package(), mustWork = TRUE)
+  system.file("fonts", package = "brand", mustWork = TRUE)
 }
 
 face_names <- function(font) {

@@ -10,7 +10,7 @@ To use this, just click the green "Use this template" button and change these th
 
 1. The actual [`inst/_brand.yml`](inst/_brand.yml)
 2. The files in [`inst/fonts/`](inst/fonts), which Typst needs for any family you self-host (I serve mine from <https://www.visruth.com>; families on [Google Fonts](https://fonts.google.com) need nothing here)
-3. [`_pkgdown.yml`](_pkgdown.yml), specifically the url, which pkgdown writes to `docs/CNAME` and the workflow pushes to `gh-pages`; [`inst/pkgdown/_pkgdown.yml`](inst/pkgdown/_pkgdown.yml), removing the Links and Bluesky entries from both `navbar.structure` and `navbar.components`; and [`website/_quarto.yml`](website/_quarto.yml) plus [`website/setup.R`](website/setup.R), which both point at this repo
+3. [`_pkgdown.yml`](_pkgdown.yml), specifically the url; [`inst/pkgdown/_pkgdown.yml`](inst/pkgdown/_pkgdown.yml), removing the Links and Bluesky entries from both `navbar.structure` and `navbar.components`; and [`website/_quarto.yml`](website/_quarto.yml) plus [`website/setup.R`](website/setup.R), which both point at this repo
 4. [`DESCRIPTION`](DESCRIPTION): the author and the url
 5. Optionally, this [`README.md`](README.md)!
 
