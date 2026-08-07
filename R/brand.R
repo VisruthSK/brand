@@ -129,8 +129,10 @@ pkgdown_override <- function(..., path = brand_file()) {
 #'
 #' The `template.bslib` list that pkgdown splices into `bslib::bs_theme()`. The
 #' light mode goes to bslib as a brand, which maps it onto Bootstrap for us; the
-#' dark mode becomes the matching Bootstrap `*-dark` Sass variables, plus the
-#' values `extra.scss` needs for the tokens Bootstrap keeps mode-invariant.
+#' dark mode becomes the matching Bootstrap `*-dark` Sass variables. Anything a
+#' browser can resolve in either mode belongs in `defaults.bootstrap` instead,
+#' where Quarto reads it too; only what needs the dark palette resolved in R is
+#' left here.
 #'
 #' `brand-font-faces` carries every file-sourced face because bslib emits only
 #' the first face of each such family: the dependencies it builds share a name
@@ -155,19 +157,10 @@ brand_bslib <- function(path = brand_file()) {
 
   light <- brand_mode(brand, "light", path)
   dark <- brand_mode(brand, "dark", path)
-  navbar_color <- dark$color$foreground
 
   c(
     list(brand = light),
     drop_null(list(
-      "navbar-bg" = light$color$primary,
-      "navbar-light-color" = navbar_color,
-      "navbar-light-hover-color" = navbar_color,
-      "navbar-light-active-color" = navbar_color,
-      "navbar-dark-color" = navbar_color,
-      "navbar-dark-hover-color" = navbar_color,
-      "navbar-dark-active-color" = navbar_color,
-      "brand-navbar-version-color" = dark$color$warning,
       "brand-font-faces" = sass_font_faces(brand$typography$fonts)
     )),
     dark_variables(dark)
