@@ -9,7 +9,7 @@ A pkgdown template package driven by a single [`_brand.yml`](https://posit-dev.g
 To use this, just click the green "Use this template" button and change these things:
 
 1. The actual [`inst/_brand.yml`](inst/_brand.yml)
-2. The font sources in [`inst/pkgdown/extra.scss`](inst/pkgdown/extra.scss), and the files in [`inst/fonts/`](inst/fonts) (I self-host some fonts on <https://www.visruth.com>, which you won't have to do if you only use fonts available on [Google Fonts](https://fonts.google.com))
+2. The files in [`inst/fonts/`](inst/fonts), which Typst needs for any family you self-host (I serve mine from <https://www.visruth.com>; families on [Google Fonts](https://fonts.google.com) need nothing here)
 3. [`_pkgdown.yml`](_pkgdown.yml), specifically the url; and [`inst/pkgdown/_pkgdown.yml`](inst/pkgdown/_pkgdown.yml), removing the Links and Bluesky components
 4. [`DESCRIPTION`](DESCRIPTION): the author, the url, and `Config/Needs/website`, which points this package's own site back at itself
 5. Optionally, this [`README.md`](README.md)!

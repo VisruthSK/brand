@@ -34,7 +34,14 @@ abcdefghijklmnopqrstuvwxyz 0123456789
 ```
 
 ```{r}
-vapply(brand$typography$fonts, function(font) font$family, "")
+#| echo: false
+#| output: asis
+roles <- c(headings = "Headings", base = "Body", monospace = "Code")
+families <- unlist(brand$typography[names(roles)])
+cat(
+  sprintf("- %s: [%s]{style=\"font-family: '%s'\"}\n", roles, families, families),
+  sep = ""
+)
 ```
 
 ## Theme colors (semantic)
