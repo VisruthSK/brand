@@ -21,10 +21,6 @@ $brand-navbar-version-color: $warning !default;
   }
 }
 
-:root pre {
-  background-color: $pre-bg;
-}
-
 .navbar {
   @include media-breakpoint-up(lg) {
     .navbar-nav {
@@ -32,19 +28,12 @@ $brand-navbar-version-color: $warning !default;
     }
   }
 
-  font-family: $headings-font-family;
-
   .nav-text {
     color: var(--#{$prefix}navbar-color) !important;
   }
 
   .nav-text.text-danger span {
     color: $brand-navbar-version-color;
-  }
-
-  .nav-item.active .nav-link,
-  .nav-item .nav-link:hover {
-    background: color-mix(in oklab, currentcolor 12%, transparent);
   }
 
   .fa-github {

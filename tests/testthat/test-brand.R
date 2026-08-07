@@ -120,18 +120,12 @@ test_that("brand_bslib() derives the dark mode as Bootstrap variables", {
   expect_match(theme[["brand-dark-theme-colors"]], '^\\("primary": #333333')
 })
 
-test_that("brand_bslib() colours the navbar from both modes", {
-  navbar <- Filter(
-    Negate(is.null),
-    brand_bslib(brand_yml(two_modes))[c(
-      "navbar-bg",
-      "navbar-light-color",
-      "navbar-dark-color"
-    )]
-  )
+test_that("brand_bslib() leaves the navbar to defaults.bootstrap", {
+  theme <- brand_bslib()
+  navbar <- grep("navbar", names(theme$brand$defaults$bootstrap$defaults))
 
-  expect_equal(navbar[["navbar-bg"]], "#222222")
-  expect_true(all(unlist(navbar[names(navbar) != "navbar-bg"]) == "#EEEEEE"))
+  expect_gt(length(navbar), 0)
+  expect_length(grep("navbar", names(theme)), 0)
 })
 
 test_that("brand_bslib() reads color.link where Bootstrap wants typography", {

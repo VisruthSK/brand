@@ -124,12 +124,36 @@ defaults:
     defaults:
       border-color: $brand-taupe-light
       border-color-dark: $brand-taupe
+
+      navbar-bg: $brand-oxblood
+      navbar-fg: $brand-shell
+      navbar-hl: $brand-shell
+      navbar-light-color: $brand-shell
+      navbar-light-hover-color: $brand-shell
+      navbar-light-active-color: $brand-shell
+      navbar-dark-color: $brand-shell
+      navbar-dark-hover-color: $brand-shell
+      navbar-dark-active-color: $brand-shell
+      brand-navbar-version-color: $brand-ochre-light
+    rules: |
+      :root pre {
+        background-color: $pre-bg;
+      }
+
+      .navbar {
+        font-family: $headings-font-family;
+
+        .nav-item.active .nav-link,
+        .nav-link.active,
+        .nav-item .nav-link:hover {
+          background: color-mix(in oklab, currentcolor 12%, transparent);
+        }
+      }
   quarto:
     format:
       dashboard:
         include-in-header:
           - text: |
               <style>
-                .navbar-title { font-family: "Valley Sans" }
                 .quarto-color-scheme-toggle .bi::before { filter: brightness(0) invert(1) }
               </style>
