@@ -15,8 +15,7 @@ template:
     input-bg: color-mix(in oklab, var(--bs-navbar-color) 12%, transparent)
     input-placeholder-color: color-mix(in oklab, var(--bs-navbar-color) 70%, transparent)
     input-border-color: transparent
-    input-padding-y: 0.25rem
-    input-padding-x: 0.55rem
+    pkgdown-nav-height: 61px
 
   includes:
     after_body: >
