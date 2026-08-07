@@ -6,7 +6,11 @@
 #' @return Absolute path to the installed `_brand.yml`.
 #' @export
 brand_file <- function() {
-  system.file("_brand.yml", package = "brand", mustWork = TRUE)
+  system.file("_brand.yml", package = this_package(), mustWork = TRUE)
+}
+
+this_package <- function() {
+  environmentName(topenv())
 }
 
 #' Copy this package's `_brand.yml` into a project
@@ -27,13 +31,14 @@ brand_file <- function() {
 #' @export
 use_brand <- function(file = "_brand.yml", use_fonts = FALSE) {
   dir.create(dirname(file), showWarnings = FALSE, recursive = TRUE)
+  brand <- yaml::read_yaml(brand_file())
+  self_hosted <- unlist(lapply(brand$typography$fonts, face_names))
 
-  if (!use_fonts) {
+  if (!use_fonts || !length(self_hosted)) {
     file.copy(brand_file(), file, overwrite = TRUE)
     return(invisible(file))
   }
 
-  brand <- yaml::read_yaml(brand_file())
   brand$typography$fonts <- local_fonts(brand$typography$fonts)
 
   fonts <- file.path(dirname(file), "fonts")
@@ -45,7 +50,7 @@ use_brand <- function(file = "_brand.yml", use_fonts = FALSE) {
 }
 
 font_dir <- function() {
-  system.file("fonts", package = "brand", mustWork = TRUE)
+  system.file("fonts", package = this_package(), mustWork = TRUE)
 }
 
 face_names <- function(font) {

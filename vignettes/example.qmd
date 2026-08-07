@@ -103,6 +103,6 @@ Caution callout.
 
 | Item | Example |
 |---|---|
-| Link | <https://www.visruth.com> |
+| Link | <`r brand$meta$link$home`> |
 | Inline code | `printf("hello")` |
 | Emphasis | *italic*, **bold**, and ***both*** |
