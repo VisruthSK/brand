@@ -10,10 +10,11 @@ use_brand(file = "_brand.yml", use_fonts = FALSE)
 \item{file}{Path to copy \code{\link[=brand_file]{brand_file()}} to.}
 
 \item{use_fonts}{Also copy this package's \verb{inst/fonts/} next to \code{file}, and
-point the copy at those files rather than at the web. Typst reads neither
-URLs nor WOFF2, so branded PDFs need a TTF or OTF per face in
-\verb{inst/fonts/}, each named \verb{<family>-<weight>-<style>}; a declared face with
-no such file is an error. Output bound for a browser needs none of this.}
+point the copy at those files rather than at the web. Only self-hosted
+families need this, and only for Typst: Quarto fetches Google families for
+a PDF itself, and a browser resolves either from the web. Each
+\code{source: file} face wants a TTF or OTF in \verb{inst/fonts/} named
+\verb{<family>-<weight>-<style>}; one with no such file is an error.}
 }
 \value{
 \code{file}, invisibly.

@@ -4,7 +4,7 @@
 
 ---
 
-A pkgdown template package driven by a single [`_brand.yml`](https://posit-dev.github.io/brand-yml/) file. This package also exports a simple function `brand::use_brand()` which copies that brand file into the working directory to style Shiny apps, Quarto files, etc. Pass `use_fonts = TRUE` to copy the fonts alongside it, which Typst needs since it can read neither URLs nor WOFF2.
+A pkgdown template package driven by a single [`_brand.yml`](https://posit-dev.github.io/brand-yml/) file. It also exports `brand::use_brand()`, which copies that brand file into the working directory to style Shiny apps, Quarto documents, and anything else that reads brand.yml. Pass `use_fonts = TRUE` only if you self-host a font; families from [Google Fonts](https://fonts.google.com) need nothing extra, Typst included.
 
 To use this, just click the green "Use this template" button and change these things:
 

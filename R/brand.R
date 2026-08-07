@@ -17,10 +17,11 @@ brand_file <- function() {
 #'
 #' @param file Path to copy [brand_file()] to.
 #' @param use_fonts Also copy this package's `inst/fonts/` next to `file`, and
-#'   point the copy at those files rather than at the web. Typst reads neither
-#'   URLs nor WOFF2, so branded PDFs need a TTF or OTF per face in
-#'   `inst/fonts/`, each named `<family>-<weight>-<style>`; a declared face with
-#'   no such file is an error. Output bound for a browser needs none of this.
+#'   point the copy at those files rather than at the web. Only self-hosted
+#'   families need this, and only for Typst: Quarto fetches Google families for
+#'   a PDF itself, and a browser resolves either from the web. Each
+#'   `source: file` face wants a TTF or OTF in `inst/fonts/` named
+#'   `<family>-<weight>-<style>`; one with no such file is an error.
 #'
 #' @return `file`, invisibly.
 #' @export
