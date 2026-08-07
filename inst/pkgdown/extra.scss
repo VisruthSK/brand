@@ -1,25 +1,19 @@
+$brand-github-ink-match: 1.33em;
+
+$brand-font-faces: () !default;
 $brand-dark-theme-colors: () !default;
 $brand-dark-code-bg: $code-bg !default;
 $brand-dark-pre-bg: $pre-bg !default;
-$brand-ochre-light: $warning !default;
+$brand-navbar-version-color: $warning !default;
 
 @if $brand-dark-theme-colors == () {
   @warn "Unbranded build: pass override = brand::pkgdown_override() to pkgdown.";
 }
 
-@each $family, $file, $weight, $style
-  in (
-    ("Valley Sans", "ValleySans-Variable", 100 900, normal),
-    ("Valley Sans", "ValleySans-Italic-Variable", 100 900, italic),
-    (CommitMono, "CommitMono-400-Regular", 400, normal),
-    (CommitMono, "CommitMono-400-Italic", 400, italic),
-    (CommitMono, "CommitMono-700-Regular", 700, normal),
-    (CommitMono, "CommitMono-700-Italic", 700, italic)
-  )
-{
+@each $family, $src, $format, $weight, $style in $brand-font-faces {
   @font-face {
     font-family: $family;
-    src: url("https://www.visruth.com/fonts/#{$file}.woff2") format("woff2");
+    src: url($src) if($format, format($format), null);
     font-weight: $weight;
     font-style: $style;
     font-display: swap;
@@ -43,7 +37,7 @@ $brand-ochre-light: $warning !default;
     color: var(--#{$prefix}navbar-color) !important;
 
     span {
-      color: $brand-ochre-light;
+      color: $brand-navbar-version-color;
     }
   }
 
@@ -53,7 +47,7 @@ $brand-ochre-light: $warning !default;
   }
 
   .fa-github {
-    font-size: 1.33em;
+    font-size: $brand-github-ink-match;
   }
 }
 

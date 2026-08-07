@@ -60,6 +60,42 @@ test_that("local_fonts() names every face it cannot find a file for", {
   expect_error(local_fonts(font), "Nonexistent-400-normal.ttf", fixed = TRUE)
 })
 
+test_that("sass_font_faces() renders the file faces as a Sass list", {
+  fonts <- list(
+    list(family = "Domine", source = "google"),
+    list(
+      family = "Valley Sans",
+      source = "file",
+      files = list(
+        list(path = "bold.woff2", weight = 700, style = "italic"),
+        list(path = "plain.woff2")
+      )
+    )
+  )
+  expect_equal(
+    sass_font_faces(fonts),
+    paste0(
+      '(("Valley Sans", "bold.woff2", "woff2", 700, italic), ',
+      '("Valley Sans", "plain.woff2", "woff2", 400, normal),)'
+    )
+  )
+})
+
+test_that("sass_font_faces() is absent when no font ships a file", {
+  expect_null(sass_font_faces(list(list(family = "Domine", source = "google"))))
+})
+
+test_that("font_format() names the format the extension implies", {
+  expect_equal(font_format("a.woff2"), '"woff2"')
+  expect_equal(font_format("a.WOFF"), '"woff"')
+  expect_equal(font_format("fonts/a.ttf"), '"truetype"')
+  expect_equal(font_format("fonts/a.otf"), '"opentype"')
+})
+
+test_that("font_format() leaves the hint out rather than guessing", {
+  expect_equal(font_format("a.dfont"), "null")
+})
+
 test_that("select_mode() resolves one mode and keeps the palette whole", {
   color <- list(
     palette = list(light = "#F6EFE1", dark = "#0A0A0A"),
@@ -68,7 +104,7 @@ test_that("select_mode() resolves one mode and keeps the palette whole", {
     warning = list(light = "ochre")
   )
   expect_equal(
-    select_mode(color, "palette", "dark"),
+    select_mode(color, "dark", "palette"),
     list(
       palette = list(light = "#F6EFE1", dark = "#0A0A0A"),
       background = "blackish",
@@ -77,9 +113,9 @@ test_that("select_mode() resolves one mode and keeps the palette whole", {
   )
 })
 
-test_that("select_value() recurses into maps that are not modes", {
+test_that("select_mode() recurses into maps that are not modes", {
   value <- list(color = list(light = "carmine", dark = "oxblood-light"))
-  expect_equal(select_value(value, "light"), list(color = "carmine"))
+  expect_equal(select_mode(value, "light"), list(color = "carmine"))
 })
 
 test_that("drop_null() removes only NULL entries", {
