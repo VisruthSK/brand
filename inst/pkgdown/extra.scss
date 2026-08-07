@@ -34,12 +34,12 @@ $brand-navbar-version-color: $warning !default;
 
   font-family: $headings-font-family;
 
-  .nav-text.text-danger {
+  .nav-text {
     color: var(--#{$prefix}navbar-color) !important;
+  }
 
-    span {
-      color: $brand-navbar-version-color;
-    }
+  .nav-text.text-danger span {
+    color: $brand-navbar-version-color;
   }
 
   .nav-item.active .nav-link,

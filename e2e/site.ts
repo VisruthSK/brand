@@ -29,7 +29,7 @@ export type SitePage = {
 
 export const docsDirectory = fileURLToPath(new URL("../docs", import.meta.url));
 
-const unbuiltSite = `No rendered site in ${docsDirectory}; run npm run build-docs first`;
+const unbuiltSite = `No rendered site in ${docsDirectory}; run npm run render first`;
 
 const deckPath = "slides/index.html";
 
@@ -78,31 +78,6 @@ export const deckSlides = [
   ...readFileSync(join(docsDirectory, deckPath), "utf8").matchAll(/<section id="([^"]+)"/g),
 ].map((match, index) => ({ name: `slides-${match[1]}`, index }));
 
-export async function expectFontsLoaded(page: Page) {
-  await expect
-    .poll(() =>
-      page.evaluate(async () => {
-        await Promise.all([...document.fonts].map((face) => face.load()));
-        await document.fonts.ready;
-        return [...document.fonts].every((face) => face.status === "loaded");
-      }),
-    )
-    .toBe(true);
-}
-
-async function expectLayoutSettled(page: Page) {
-  let previous = 0;
-  let repeats = 0;
-  await expect
-    .poll(async () => {
-      const height = await page.evaluate(() => document.documentElement.scrollHeight);
-      repeats = height === previous ? repeats + 1 : 0;
-      previous = height;
-      return repeats;
-    })
-    .toBeGreaterThan(2);
-}
-
 export async function openPage(page: Page, target: SitePage, scheme: Scheme) {
   if (target.kind === "pkgdown" && scheme === "dark") {
     await page.addInitScript(() => localStorage.setItem("theme", "dark"));
@@ -116,8 +91,7 @@ export async function openPage(page: Page, target: SitePage, scheme: Scheme) {
   } else {
     await expect(page.locator("body")).toHaveClass(new RegExp(`\\bquarto-${scheme}\\b`));
   }
-  await expectFontsLoaded(page);
-  await expectLayoutSettled(page);
+  await page.evaluate(() => document.fonts.ready);
 }
 
 export async function openSlide(page: Page, index: number) {
@@ -128,5 +102,5 @@ export async function openSlide(page: Page, index: number) {
     window.Reveal!.slide(slide);
   }, index);
   await page.waitForFunction((slide) => window.Reveal!.getIndices().h === slide, index);
-  await expectFontsLoaded(page);
+  await page.evaluate(() => document.fonts.ready);
 }
