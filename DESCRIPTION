@@ -1,6 +1,6 @@
 Package: brand
 Title: Personal Brand for Quarto and pkgdown
-Version: 1.0.0
+Version: 1.0.0.9000
 Authors@R:
     person("Visruth", "Srimath Kandali", , "public@visruth.com", role = c("aut", "cre", "cph"))
 Description: Custom theming using a single 'brand.yml' file that 'Quarto'
