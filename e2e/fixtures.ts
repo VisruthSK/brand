@@ -8,11 +8,17 @@ export { expect };
 
 const localHosts = new Set(["127.0.0.1", "localhost"]);
 
+const brandHosts = [
+  ...readFileSync(fileURLToPath(new URL("../inst/_brand.yml", import.meta.url)), "utf8").matchAll(
+    /https?:\/\/[^/\s"']+/g,
+  ),
+].map((match) => new URL(match[0]).hostname);
+
 const allowedExternalHosts = new Set([
   "fonts.googleapis.com",
   "fonts.gstatic.com",
   "cdn.jsdelivr.net",
-  "www.visruth.com",
+  ...brandHosts,
 ]);
 
 const cacheDirectory = fileURLToPath(new URL("../.playwright", import.meta.url));
