@@ -1,7 +1,28 @@
-url: https://visruthsk.github.io/brand/
+url: https://brand.visruth.com/
 
 template:
   package: brand
+
+navbar:
+  structure:
+    left:
+      [home, articles, revealjs, dashboard, typst, website, reference, news, links]
+  components:
+    revealjs:
+      text: RevealJS
+      href: slides/index.html
+      target: _blank
+    website:
+      text: Quarto Site
+      href: website/index.html
+    dashboard:
+      text: Dashboard
+      href: dashboard/index.html
+      target: _blank
+    typst:
+      text: Typst
+      href: pdf/typst.pdf
+      target: _blank
 
 development:
   mode: auto

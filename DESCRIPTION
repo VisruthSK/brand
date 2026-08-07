@@ -1,20 +1,28 @@
 Package: brand
-Title: What the Package Does (One Line, Title Case)
+Title: Personal Brand for Quarto and pkgdown
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R:
+    person("Visruth", "Srimath Kandali", , "public@visruth.com", role = c("aut", "cre", "cph"))
+Description: Custom theming using a single 'brand.yml' file that 'Quarto'
+    reads directly, paired with the 'pkgdown' template package that
+    consumes the same file, so documents, websites, and package reference
+    sites share one light and dark theme.
 License: GPL (>= 3)
-URL: https://visruthsk.github.io/brand/
-Suggests: 
+URL: https://brand.visruth.com/, https://github.com/VisruthSK/brand
+BugReports: https://github.com/VisruthSK/brand/issues
+Depends:
+    R (>= 4.1.0)
+Imports:
     brand.yml,
+    yaml
+Suggests:
     knitr,
+    pkgdown,
+    quarto,
+    testthat (>= 3.0.0)
+VignetteBuilder:
     quarto
-VignetteBuilder: 
-    quarto
-Config/Needs/website:
-    brand.yml,
-    VisruthSK/brand
+Config/roxygen2/version: 8.1.0
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3

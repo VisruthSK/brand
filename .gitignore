@@ -2,3 +2,10 @@
 inst/doc
 **/.quarto/
 docs
+vignettes/_brand.yml
+vignettes/fonts
+website/_brand.yml
+website/index.md
+website/example.qmd
+*.typ
+

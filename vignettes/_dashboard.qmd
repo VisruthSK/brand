@@ -1,0 +1,81 @@
+---
+title: "Example Dashboard"
+format:
+  dashboard:
+    theme: brand
+---
+
+```{r}
+#| include: false
+brand <- yaml::read_yaml(brand::brand_file())
+palette <- brand$color$palette
+
+resolve <- function(value) {
+  if (value %in% names(palette)) palette[[value]] else value
+}
+
+on_light <- resolve(brand$color$foreground$light)
+on_dark <- resolve(brand$color$foreground$dark)
+
+readable <- function(hex) {
+  channels <- strtoi(substring(hex, c(2, 4, 6), c(3, 5, 7)), 16L) / 255
+  if (sum(c(0.2126, 0.7152, 0.0722) * channels) > 0.4) on_light else on_dark
+}
+
+tiles <- function(values) {
+  cells <- sprintf(
+    '<div title="Click to copy %1$s"
+       onclick="navigator.clipboard.writeText(\'%1$s\');
+         const hex = this.lastElementChild; hex.textContent = \'copied\';
+         setTimeout(() => hex.textContent = \'%1$s\', 800)"
+       style="display:flex;flex-direction:row;align-items:center;
+       justify-content:space-between;gap:1rem;overflow:hidden;min-height:0;
+       cursor:pointer;background:%1$s;color:%2$s;border-radius:.375rem;padding:0 .7rem">
+       <span>%3$s</span>
+       <span style="font-family:var(--bs-font-monospace);opacity:.75">%1$s</span>
+     </div>',
+    values,
+    vapply(values, readable, ""),
+    names(values)
+  )
+  knitr::raw_html(sprintf(
+    '<div style="display:grid;gap:.4rem;grid-auto-rows:1fr">%s</div>',
+    paste(cells, collapse = "")
+  ))
+}
+
+for_mode <- function(mode) {
+  tokens <- setdiff(names(brand$color), "palette")
+  values <- vapply(tokens, function(token) {
+    value <- brand$color[[token]]
+    resolve(if (is.list(value)) value[[mode]] else value)
+  }, "")
+  tiles(values)
+}
+```
+
+## Row {height="12%"}
+
+::: card
+### This heading uses the brand headings font {style="margin:0"}
+
+So do this body text and this `inline code`, and so does every colour below:
+all of it is read out of the one `_brand.yml` that styles this site.
+:::
+
+## Row
+
+```{r}
+#| title: Light
+for_mode("light")
+```
+
+```{r}
+#| title: Dark
+for_mode("dark")
+```
+
+```{r}
+#| title: Palette
+tiles(unlist(palette))
+```

@@ -10,19 +10,21 @@ knitr:
     comment: '#>'
 ---
 
+```{r setup, include=FALSE}
+brand <- yaml::read_yaml(brand::brand_file())
+palette <- brand$color$palette
+
+hex <- function(value, mode) {
+  value <- if (is.list(value)) value[[mode]] else value
+  paste0("`", if (value %in% names(palette)) palette[[value]] else value, "`")
+}
+```
+
 ## Typography
-
-## H2
-
-Header 2
 
 ### H3
 
-Header 3
-
 #### H4
-
-Header 4
 
 Paragraph text should use the brand base font. Inline code should use the brand monospace: `const x = 42`.
 
@@ -32,43 +34,46 @@ abcdefghijklmnopqrstuvwxyz 0123456789
 ```
 
 ```{r}
-brand::hello("brand")
+#| echo: false
+#| output: asis
+roles <- c(headings = "Headings", base = "Body", monospace = "Code")
+families <- unlist(brand$typography[names(roles)])
+in_own_face <- if (identical(knitr::pandoc_to(), "typst")) {
+  "- %s: `#text(font: \"%s\")[%s]`{=typst}\n"
+} else {
+  "- %s: [%s]{style=\"font-family: '%s'\"}\n"
+}
+cat(sprintf(in_own_face, roles, families, families), sep = "")
 ```
 
 ## Theme colors (semantic)
 
-The values below are pulled from `_brand.yml` using the `brand` shortcode.
+Read straight out of `_brand.yml`, the same file that styles this site.
 
-| Token | Light | Dark |
-|---|---|---|
-| background | `{{< brand color background light >}}` | `{{< brand color background dark >}}` |
-| foreground | `{{< brand color foreground light >}}` | `{{< brand color foreground dark >}}` |
-| primary | `{{< brand color primary light >}}` | `{{< brand color primary dark >}}` |
-| secondary | `{{< brand color secondary light >}}` | `{{< brand color secondary dark >}}` |
-| tertiary | `{{< brand color tertiary light >}}` | `{{< brand color tertiary dark >}}` |
-| success | `{{< brand color success light >}}` | `{{< brand color success dark >}}` |
-| info | `{{< brand color info light >}}` | `{{< brand color info dark >}}` |
-| warning | `{{< brand color warning light >}}` | `{{< brand color warning dark >}}` |
-| danger | `{{< brand color danger light >}}` | `{{< brand color danger dark >}}` |
+```{r}
+#| echo: false
+tokens <- setdiff(names(brand$color), "palette")
+knitr::kable(
+  data.frame(
+    Token = tokens,
+    Light = vapply(tokens, function(t) hex(brand$color[[t]], "light"), ""),
+    Dark = vapply(tokens, function(t) hex(brand$color[[t]], "dark"), "")
+  ),
+  row.names = FALSE
+)
+```
 
-## Palette (named swatches)
+## Palette (named colors)
 
 These are the single-value entries under `color.palette`.
 
-| Name | Value |
-|---|---|
-| ivory | `{{< brand color ivory >}}` |
-| ink | `{{< brand color ink >}}` |
-| blackish | `{{< brand color blackish >}}` |
-| cobalt | `{{< brand color cobalt >}}` |
-| periwinkle | `{{< brand color periwinkle >}}` |
-| slate | `{{< brand color slate >}}` |
-| mist | `{{< brand color mist >}}` |
-| haze | `{{< brand color haze >}}` |
-| shadow | `{{< brand color shadow >}}` |
-| teal | `{{< brand color teal >}}` |
-| amber | `{{< brand color amber >}}` |
-| rose | `{{< brand color rose >}}` |
+```{r}
+#| echo: false
+knitr::kable(
+  data.frame(Name = names(palette), Value = paste0("`", unlist(palette), "`")),
+  row.names = FALSE
+)
+```
 
 ## Components
 
@@ -81,7 +86,7 @@ Warning callout.
 :::
 
 ::: {.callout-important}
-Danger callout. 
+Danger callout.
 :::
 
 ::: {.callout-tip}
@@ -98,6 +103,6 @@ Caution callout.
 
 | Item | Example |
 |---|---|
-| Link | <https://www.visruth.com> |
+| Link | <`r brand$meta$link$home`> |
 | Inline code | `printf("hello")` |
-| List | - one<br>- two<br>- three |
+| Emphasis | *italic*, **bold**, and ***both*** |

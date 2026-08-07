@@ -1,0 +1,71 @@
+// matches github's ink to its neighbours, not FA5's fa-lg
+$brand-github-ink-match: 1.33em;
+
+$brand-font-faces: () !default;
+$brand-dark-theme-colors: () !default;
+$brand-dark-code-bg: $code-bg !default;
+$brand-dark-pre-bg: $pre-bg !default;
+$brand-navbar-version-color: $warning !default;
+
+@if $brand-dark-theme-colors == () {
+  @warn "Unbranded build: pass override = brand::pkgdown_override() to pkgdown.";
+}
+
+@each $family, $src, $format, $weight, $style in $brand-font-faces {
+  @font-face {
+    font-family: $family;
+    src: url($src) if($format, format($format), null);
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+:root pre {
+  background-color: $pre-bg;
+}
+
+.navbar {
+  @include media-breakpoint-up(lg) {
+    .navbar-nav {
+      align-items: center;
+    }
+  }
+
+  font-family: $headings-font-family;
+
+  .nav-text.text-danger {
+    color: var(--#{$prefix}navbar-color) !important;
+
+    span {
+      color: $brand-navbar-version-color;
+    }
+  }
+
+  .nav-item.active .nav-link,
+  .nav-item .nav-link:hover {
+    background: color-mix(in oklab, currentcolor 12%, transparent);
+  }
+
+  .fa-github {
+    font-size: $brand-github-ink-match;
+  }
+}
+
+:root[data-bs-theme="dark"] {
+  @each $name, $color in $brand-dark-theme-colors {
+    --#{$prefix}#{$name}: #{$color};
+    --#{$prefix}#{$name}-rgb: #{to-rgb($color)};
+    --#{$prefix}#{$name}-text-emphasis: #{$color};
+    --#{$prefix}#{$name}-bg-subtle: #{shade-color($color, 80%)};
+    --#{$prefix}#{$name}-border-subtle: #{shade-color($color, 40%)};
+  }
+
+  code {
+    background-color: $brand-dark-code-bg;
+  }
+
+  pre {
+    background-color: $brand-dark-pre-bg;
+  }
+}

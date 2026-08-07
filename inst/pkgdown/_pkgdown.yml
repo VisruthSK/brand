@@ -1,29 +1,57 @@
 template:
   bootstrap: 5
   light-switch: true
+  math-rendering: katex
 
   theme: tango
   theme-dark: nord
 
+  bslib:
+    preset: litera
+    font-family-sans-serif: var(--bs-body-font-family)
+    font-family-serif: var(--bs-body-font-family)
+    pkgdown-footer-color: var(--bs-secondary-color)
+    input-color: var(--bs-navbar-color)
+    input-bg: color-mix(in oklab, var(--bs-navbar-color) 12%, transparent)
+    input-placeholder-color: color-mix(in oklab, var(--bs-navbar-color) 70%, transparent)
+    input-border-color: transparent
+    # the navbar's real height, which follows the headings font
+    pkgdown-nav-height: 61px
+
+  includes:
+    after_body: >
+      <script>document.querySelectorAll(".navbar .nav-text.text-danger").forEach(v => v.innerHTML = v.textContent.replace(/(\.\d+)$/, "<span>$1</span>"))</script>
+
 navbar:
   structure:
-    left: [home, vignettes, functions, news, links]
+    left: [home, articles, reference, news, links]
     right: [search, bluesky, github, lightswitch]
   components:
     home:
       icon: fa-home fa-lg
       aria-label: Go to homepage
       href: index.html
-    vignettes:
-      text: Vignettes
-      href: articles/index.html
-    functions:
+    reference:
       text: Functions
       href: reference/index.html
     links:
       text: Links
       href: https://links.visruth.com/
     bluesky:
-      icon: fa-brands fa-bluesky
-      aria-label: Visit our Bluesky profile
+      icon: fa-brands fa-bluesky fa-lg
+      aria-label: Visit Bluesky
       href: https://bsky.app/profile/visruth.com
+    lightswitch:
+      id: lightswitch
+      aria-label: Light switch
+      icon: fa-sun fa-lg fa-fw
+      menu:
+        - text: Light
+          icon: fa-sun fa-lg fa-fw
+          theme: light
+        - text: Dark
+          icon: fa-moon fa-lg fa-fw
+          theme: dark
+        - text: Auto
+          icon: fa-adjust fa-lg fa-fw
+          theme: auto

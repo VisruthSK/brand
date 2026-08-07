@@ -2,8 +2,15 @@
 ^\.Rproj\.user$
 ^vignettes/\.quarto$
 ^vignettes/*_files$
+^vignettes/_brand\.yml$
+^vignettes/fonts$
+^vignettes/_dashboard\.qmd$
 ^LICENSE\.md$
 ^_pkgdown\.yml$
 ^docs$
+^website$
 ^pkgdown$
 ^\.github$
+^tools$
+
+^AGENTS\.md$
