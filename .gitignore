@@ -7,4 +7,5 @@ vignettes/fonts
 website/_brand.yml
 website/index.md
 website/example.qmd
+*.typ
 
