@@ -55,3 +55,6 @@ navbar:
         - text: Auto
           icon: fa-adjust fa-lg fa-fw
           theme: auto
+
+development:
+  mode: auto

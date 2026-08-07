@@ -23,6 +23,3 @@ navbar:
       text: Typst
       href: pdf/typst.pdf
       target: _blank
-
-development:
-  mode: auto
