@@ -38,10 +38,12 @@ abcdefghijklmnopqrstuvwxyz 0123456789
 #| output: asis
 roles <- c(headings = "Headings", base = "Body", monospace = "Code")
 families <- unlist(brand$typography[names(roles)])
-cat(
-  sprintf("- %s: [%s]{style=\"font-family: '%s'\"}\n", roles, families, families),
-  sep = ""
-)
+in_own_face <- if (identical(knitr::pandoc_to(), "typst")) {
+  "- %s: `#text(font: \"%s\")[%s]`{=typst}\n"
+} else {
+  "- %s: [%s]{style=\"font-family: '%s'\"}\n"
+}
+cat(sprintf(in_own_face, roles, families, families), sep = "")
 ```
 
 ## Theme colors (semantic)
