@@ -1,6 +1,5 @@
-import { schemes } from "./brand";
 import { expect, test } from "./fixtures";
-import { deckSlides, openPage, openSlide, sitePages } from "./site";
+import { deckSlides, openPage, openSlide, schemes, sitePages } from "./site";
 
 const tooTallToSnapshot = new Set(["LICENSE"]);
 
