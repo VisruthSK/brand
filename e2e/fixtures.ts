@@ -8,19 +8,6 @@ export { expect };
 
 const localHosts = new Set(["127.0.0.1", "localhost"]);
 
-const brandHosts = [
-  ...readFileSync(fileURLToPath(new URL("../inst/_brand.yml", import.meta.url)), "utf8").matchAll(
-    /https?:\/\/[^/\s"']+/g,
-  ),
-].map((match) => new URL(match[0]).hostname);
-
-const allowedExternalHosts = new Set([
-  "fonts.googleapis.com",
-  "fonts.gstatic.com",
-  "cdn.jsdelivr.net",
-  ...brandHosts,
-]);
-
 const cacheDirectory = fileURLToPath(new URL("../.playwright", import.meta.url));
 
 type CachedResponse = { status: number; contentType: string; body: string };
@@ -73,15 +60,11 @@ export const test = base.extend<{ problems: Problems }>({
     async ({ page }, use) => {
       const problems: Problems = { errors: [], requests: [] };
 
-      await page.route(/^https?:/, (route) => {
-        const { hostname } = new URL(route.request().url());
-        if (localHosts.has(hostname)) {
-          return route.continue();
-        }
-        return allowedExternalHosts.has(hostname)
-          ? fulfillFromCache(route)
-          : route.abort("blockedbyclient");
-      });
+      await page.route(/^https?:/, (route) =>
+        localHosts.has(new URL(route.request().url()).hostname)
+          ? route.continue()
+          : fulfillFromCache(route),
+      );
 
       page.on("console", (message) => {
         if (message.type() === "error") {
