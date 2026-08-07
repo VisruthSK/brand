@@ -47,8 +47,8 @@ test_that("use_brand(use_fonts = TRUE) leaves google fonts alone", {
 
 test_that("face_names() defaults to weight 400 and normal style", {
   expect_equal(
-    face_names(list(family = "Valley Sans", files = list(list(path = "x")))),
-    "ValleySans-400-normal"
+    face_names(list(family = "Fixture Sans", files = list(list(path = "x")))),
+    "FixtureSans-400-normal"
   )
 })
 
@@ -62,9 +62,9 @@ test_that("local_fonts() names every face it cannot find a file for", {
 
 test_that("sass_font_faces() renders the file faces as a Sass list", {
   fonts <- list(
-    list(family = "Domine", source = "google"),
+    list(family = "Fixture Serif", source = "google"),
     list(
-      family = "Valley Sans",
+      family = "Fixture Sans",
       source = "file",
       files = list(
         list(path = "bold.woff2", weight = 700, style = "italic"),
@@ -75,14 +75,16 @@ test_that("sass_font_faces() renders the file faces as a Sass list", {
   expect_equal(
     sass_font_faces(fonts),
     paste0(
-      '(("Valley Sans", "bold.woff2", "woff2", 700, italic), ',
-      '("Valley Sans", "plain.woff2", "woff2", 400, normal),)'
+      '(("Fixture Sans", "bold.woff2", "woff2", 700, italic), ',
+      '("Fixture Sans", "plain.woff2", "woff2", 400, normal),)'
     )
   )
 })
 
 test_that("sass_font_faces() is absent when no font ships a file", {
-  expect_null(sass_font_faces(list(list(family = "Domine", source = "google"))))
+  expect_null(
+    sass_font_faces(list(list(family = "Fixture Serif", source = "google")))
+  )
 })
 
 test_that("font_format() names the format the extension implies", {
@@ -98,54 +100,88 @@ test_that("font_format() leaves the hint out rather than guessing", {
 
 test_that("select_mode() resolves one mode and keeps the palette whole", {
   color <- list(
-    palette = list(light = "#F6EFE1", dark = "#0A0A0A"),
-    background = list(light = "cream", dark = "blackish"),
-    primary = "oxblood",
-    warning = list(light = "ochre")
+    palette = list(light = "#FFFFFF", dark = "#000000"),
+    background = list(light = "paper", dark = "soot"),
+    primary = "ink",
+    warning = list(light = "amber")
   )
   expect_equal(
     select_mode(color, "dark", "palette"),
     list(
-      palette = list(light = "#F6EFE1", dark = "#0A0A0A"),
-      background = "blackish",
-      primary = "oxblood"
+      palette = list(light = "#FFFFFF", dark = "#000000"),
+      background = "soot",
+      primary = "ink"
     )
   )
 })
 
 test_that("select_mode() recurses into maps that are not modes", {
-  value <- list(color = list(light = "carmine", dark = "oxblood-light"))
-  expect_equal(select_mode(value, "light"), list(color = "carmine"))
+  value <- list(color = list(light = "ink", dark = "chalk"))
+  expect_equal(select_mode(value, "light"), list(color = "ink"))
 })
 
 test_that("drop_null() removes only NULL entries", {
   expect_equal(drop_null(list(a = 1, b = NULL, c = NA)), list(a = 1, c = NA))
 })
 
+two_mode_brand <- function() {
+  path <- tempfile(fileext = ".yml")
+  yaml::write_yaml(
+    list(
+      color = list(
+        palette = list(ink = "#111111"),
+        background = list(light = "#FFFFFF", dark = "#000000"),
+        foreground = list(light = "ink", dark = "#EEEEEE"),
+        primary = list(light = "#222222", dark = "#333333"),
+        link = list(light = "#444444", dark = "#555555")
+      ),
+      typography = list(headings = "Fixture Sans")
+    ),
+    path
+  )
+  path
+}
+
 test_that("brand_bslib() hands bslib the light brand", {
-  theme <- brand_bslib()
+  path <- two_mode_brand()
+  on.exit(unlink(path))
+
+  theme <- brand_bslib(path)
 
   expect_s3_class(theme$brand, "brand_yml")
-  expect_equal(theme$brand$color$primary, "#380C12")
-  expect_equal(theme$brand$typography$headings$family, "Valley Sans")
-  expect_equal(theme$brand$path, brand_file())
+  expect_equal(theme$brand$color$primary, "#222222")
+  expect_equal(theme$brand$typography$headings$family, "Fixture Sans")
+  expect_equal(theme$brand$path, path)
 })
 
 test_that("brand_bslib() derives the dark mode as Bootstrap variables", {
-  theme <- brand_bslib()
+  path <- two_mode_brand()
+  on.exit(unlink(path))
 
-  expect_equal(theme[["body-bg-dark"]], "#0A0A0A")
-  expect_equal(theme[["body-color-dark"]], "#F2E8DE")
-  expect_equal(theme[["link-color-dark"]], "#D25668")
-  expect_match(theme[["brand-dark-theme-colors"]], '^\\("primary": #B0293A,')
+  theme <- brand_bslib(path)
+
+  expect_equal(theme[["body-bg-dark"]], "#000000")
+  expect_equal(theme[["body-color-dark"]], "#EEEEEE")
+  expect_equal(theme[["link-color-dark"]], "#555555")
+  expect_match(theme[["brand-dark-theme-colors"]], '^\\("primary": #333333')
 })
 
 test_that("brand_bslib() colours the navbar from both modes", {
-  theme <- brand_bslib()
+  path <- two_mode_brand()
+  on.exit(unlink(path))
+
+  theme <- brand_bslib(path)
   navbar <- theme[startsWith(names(theme), "navbar-")]
 
-  expect_equal(navbar[["navbar-bg"]], "#380C12")
-  expect_true(all(unlist(navbar[names(navbar) != "navbar-bg"]) == "#F2E8DE"))
+  expect_equal(navbar[["navbar-bg"]], "#222222")
+  expect_true(all(unlist(navbar[names(navbar) != "navbar-bg"]) == "#EEEEEE"))
+})
+
+test_that("brand_bslib() reads the brand this package ships", {
+  theme <- brand_bslib()
+
+  expect_s3_class(theme$brand, "brand_yml")
+  expect_equal(theme$brand$path, brand_file())
 })
 
 test_that("brand_bslib() reads color.link where Bootstrap wants a typography key", {
