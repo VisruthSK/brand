@@ -41,54 +41,7 @@ jobs:
           needs: website
 
       - name: Build site
-        run: |
-          pkgdown::build_site_github_pages(
-            override = brand::pkgdown_override(),
-            new_process = FALSE,
-            install = FALSE
-          )
-        shell: Rscript {0}
-
-      - name: Build previews
-        run: |
-          brand::use_brand("vignettes/_brand.yml")
-
-          quarto::quarto_render(
-            "vignettes/example.qmd",
-            output_format = "revealjs",
-            metadata = list(
-              format = list(
-                revealjs = list(
-                  `slide-number` = TRUE,
-                  smaller = TRUE,
-                  scrollable = TRUE
-                )
-              )
-            ),
-            quarto_args = c("--output-dir", "../docs/slides")
-          )
-          file.rename("docs/slides/example.html", "docs/slides/index.html")
-
-          quarto::quarto_render(
-            "vignettes/_dashboard.qmd",
-            output_format = "dashboard",
-            quarto_args = c("--output-dir", "../docs/dashboard")
-          )
-          file.rename("docs/dashboard/_dashboard.html", "docs/dashboard/index.html")
-
-          quarto::quarto_render("website")
-
-          brand::use_brand("vignettes/_brand.yml", use_fonts = TRUE)
-
-          quarto::quarto_render(
-            "vignettes/example.qmd",
-            output_format = "typst",
-            quarto_args = c("--output-dir", "../docs/pdf")
-          )
-          file.rename("docs/pdf/example.pdf", "docs/pdf/typst.pdf")
-
-          unlink(c("vignettes/_brand.yml", "vignettes/fonts"), recursive = TRUE)
-        shell: Rscript {0}
+        run: Rscript tools/build-docs.R
 
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'pull_request'

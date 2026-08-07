@@ -11,5 +11,6 @@
 ^website$
 ^pkgdown$
 ^\.github$
+^tools$
 
 ^AGENTS\.md$
