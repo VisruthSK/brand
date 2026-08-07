@@ -76,6 +76,7 @@ export const deckSlides = [
 ].map((match, index) => ({ name: `slides-${match[1]}`, index }));
 
 export async function expectFontsLoaded(page: Page, families: string[]) {
+  await page.evaluate(() => Promise.all([...document.fonts].map((face) => face.load())));
   await page.evaluate(() => document.fonts.ready);
   await expect
     .poll(() =>

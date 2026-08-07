@@ -1,7 +1,8 @@
 pkgdown::build_site_github_pages(
   override = brand::pkgdown_override(),
   new_process = FALSE,
-  install = FALSE
+  install = FALSE,
+  quiet = FALSE
 )
 
 brand::use_brand("vignettes/_brand.yml")
