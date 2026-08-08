@@ -481,7 +481,7 @@
 
 #show: doc => article(
   title: [Example Vignette],
-  font: ("Domine",),
+  font: ("Alegreya",),
   heading-family: ("Valley Sans",),
   heading-color: rgb("#1e1512"),
   codefont: ("CommitMono",),
@@ -501,7 +501,7 @@ Paragraph text should use the brand base font. Inline code should use the brand 
 #Skylighting(([#NormalTok("text block should use the brand monospace.");],
 [#NormalTok("abcdefghijklmnopqrstuvwxyz 0123456789");],));
 - Headings: #text(font: "Valley Sans")[Valley Sans]
-- Body: #text(font: "Domine")[Domine]
+- Body: #text(font: "Alegreya")[Alegreya]
 - Code: #text(font: "CommitMono")[CommitMono]
 
 = Theme colors (semantic)

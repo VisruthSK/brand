@@ -15,7 +15,7 @@ abcdefghijklmnopqrstuvwxyz 0123456789
 ```
 
 - Headings: Valley Sans
-- Body: Domine
+- Body: Alegreya
 - Code: CommitMono
 
 ## Theme colors (semantic)

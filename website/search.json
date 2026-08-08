@@ -4,14 +4,14 @@
     "href": "example.html",
     "title": "Example Vignette",
     "section": "",
-    "text": "Paragraph text should use the brand base font. Inline code should use the brand monospace: const x = 42.\ntext block should use the brand monospace.\nabcdefghijklmnopqrstuvwxyz 0123456789\n\nHeadings: Valley Sans\nBody: Domine\nCode: CommitMono"
+    "text": "Paragraph text should use the brand base font. Inline code should use the brand monospace: const x = 42.\ntext block should use the brand monospace.\nabcdefghijklmnopqrstuvwxyz 0123456789\n\nHeadings: Valley Sans\nBody: Alegreya\nCode: CommitMono"
   },
   {
     "objectID": "example.html#typography",
     "href": "example.html#typography",
     "title": "Example Vignette",
     "section": "",
-    "text": "Paragraph text should use the brand base font. Inline code should use the brand monospace: const x = 42.\ntext block should use the brand monospace.\nabcdefghijklmnopqrstuvwxyz 0123456789\n\nHeadings: Valley Sans\nBody: Domine\nCode: CommitMono"
+    "text": "Paragraph text should use the brand base font. Inline code should use the brand monospace: const x = 42.\ntext block should use the brand monospace.\nabcdefghijklmnopqrstuvwxyz 0123456789\n\nHeadings: Valley Sans\nBody: Alegreya\nCode: CommitMono"
   },
   {
     "objectID": "example.html#theme-colors-semantic",
