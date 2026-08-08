@@ -64,7 +64,7 @@ color:
 
 typography:
   fonts:
-    - family: Domine
+    - family: Alegreya 
       source: google
       weight: [400, 500, 600, 700]
       style: normal
@@ -99,7 +99,7 @@ typography:
           weight: 700
           style: italic
 
-  base: Domine
+  base: Alegreya
   headings: Valley Sans
   monospace: CommitMono
 

@@ -78,7 +78,7 @@
 
 #show: doc => article(
   title: [Example Vignette],
-  font: ("Domine",),
+  font: ("Alegreya",),
   heading-family: ("Valley Sans",),
   heading-color: rgb("#1e1512"),
   codefont: ("CommitMono",),
